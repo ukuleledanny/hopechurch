@@ -1,0 +1,80 @@
+// Shared navigation HTML
+const NAV_HTML = `
+<nav class="nav" id="nav">
+  <a href="index.html" class="nav__logo">
+    <span class="nav__logo-main">Hope Church</span>
+    <span class="nav__logo-sub">Madison, Alabama</span>
+  </a>
+  <ul class="nav__links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="sermons.html">Sermons</a></li>
+    <li><a href="events.html">Events</a></li>
+    <li><a href="ministries.html">Ministries</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav__cta">Plan a Visit</a>
+  <div class="nav__toggle" id="navToggle" onclick="document.getElementById('nav').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+`;
+
+const FOOTER_HTML = `
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <div class="nav__logo">
+          <span class="nav__logo-main">Hope Church</span>
+          <span class="nav__logo-sub">Madison, Alabama</span>
+        </div>
+        <p>Passionately pursuing Christ and fearlessly on mission — in Madison and beyond.</p>
+      </div>
+      <div class="footer__col">
+        <h5>Navigate</h5>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="sermons.html">Sermons</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="ministries.html">Ministries</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Visit</h5>
+        <ul>
+          <li><a href="#">1661 Balch Rd</a></li>
+          <li><a href="#">Madison, AL 35757</a></li>
+          <li><a href="#">Sunday 10:00 a.m.</a></li>
+          <li><a href="tel:2568305544">(256) 830-5544</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h5>Connect</h5>
+        <ul>
+          <li><a href="#">Facebook</a></li>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="contact.html">Prayer Request</a></li>
+          <li><a href="contact.html">Give Online</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>© 2025 Hope Church · Madison, Alabama. All rights reserved.</p>
+      <p>Made with faith &amp; care.</p>
+    </div>
+  </div>
+</footer>
+`;
+
+// Inject nav and footer
+document.getElementById('nav-placeholder').innerHTML = NAV_HTML;
+document.getElementById('footer-placeholder').innerHTML = FOOTER_HTML;
+
+// Highlight active nav link
+const page = window.location.pathname.split('/').pop() || 'index.html';
+document.querySelectorAll('.nav__links a').forEach(link => {
+  if (link.getAttribute('href') === page) link.classList.add('active');
+});

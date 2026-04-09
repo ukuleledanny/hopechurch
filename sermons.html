@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sermons · Hope Church Madison</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .series-banner {
+      background: var(--navy);
+      border-left: 4px solid var(--gold);
+      padding: 2.5rem 3rem;
+      margin-bottom: 3rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 2rem;
+    }
+    .series-banner__tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .series-banner h3 { color: var(--white); font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .series-banner p { color: rgba(255,255,255,0.55); font-size: 0.95rem; }
+
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+      padding: 0.5rem 1.25rem;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid rgba(0,0,0,0.15);
+      background: transparent;
+      cursor: pointer;
+      font-family: 'Jost', sans-serif;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--navy);
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .sermon-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 2rem;
+      padding: 1.75rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+      transition: background 0.15s;
+    }
+    .sermon-card:first-child { border-top: 1px solid rgba(0,0,0,0.07); }
+    .sermon-card__num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      color: rgba(184,151,90,0.25);
+      font-weight: 300;
+      width: 2.5rem;
+      text-align: right;
+      line-height: 1;
+    }
+    .sermon-card__series {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+    .sermon-card h3 { font-size: 1.25rem; margin-bottom: 0.25rem; }
+    .sermon-card__meta { font-size: 0.82rem; color: var(--muted); }
+    .sermon-card__actions { display: flex; gap: 0.75rem; align-items: center; }
+    .play-btn {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--navy);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white);
+      cursor: pointer;
+      transition: background 0.2s;
+      border: none;
+      flex-shrink: 0;
+    }
+    .play-btn:hover { background: var(--navy-lt); }
+
+    @media (max-width:600px) {
+      .sermon-card { grid-template-columns: 1fr auto; }
+      .sermon-card__num { display: none; }
+      .series-banner { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- ── Page Hero ── -->
+<section class="page-hero">
+  <div class="container" style="position:relative; z-index:2;">
+    <span class="eyebrow">God's Word</span>
+    <h1>Sermons</h1>
+    <p>Expository preaching through the Bible — relevant, faithful, and rooted in the love of God.</p>
+  </div>
+</section>
+
+<!-- ── Current Series ── -->
+<section class="section" style="padding-bottom:0;">
+  <div class="container">
+    <span class="eyebrow">Now Preaching</span>
+    <h2 style="margin-bottom:2rem;">Current Series</h2>
+    <div class="series-banner">
+      <div>
+        <div class="series-banner__tag">Current Series</div>
+        <h3>The Revelation of Jesus Christ</h3>
+        <p>A verse-by-verse journey through the Book of Revelation — discovering blessings, hope, and the glory of the risen King.</p>
+      </div>
+      <a href="#" class="btn btn--gold" style="white-space:nowrap;">Watch Latest</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Sermon Archive ── -->
+<section class="section" style="padding-top:2rem;">
+  <div class="container">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:2rem;">
+      <h2>All Sermons</h2>
+    </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Revelation</button>
+      <button class="filter-btn">Ephesians</button>
+      <button class="filter-btn">Psalms</button>
+      <button class="filter-btn">Topical</button>
+    </div>
+
+    <div class="sermon-card">
+      <div class="sermon-card__num">01</div>
+      <div>
+        <div class="sermon-card__series">Revelation · Part 7</div>
+        <h3>A Personal Letter from God</h3>
+        <div class="sermon-card__meta">Pastor Mickey Counter &nbsp;·&nbsp; June 23, 2023 &nbsp;·&nbsp; 42 min</div>
+      </div>
+      <div class="sermon-card__actions">
+        <button class="play-btn" onclick="alert('Sermon player coming soon!')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <a href="#" class="btn" style="font-size:0.65rem; padding:0.6rem 1.2rem;">Notes</a>
+      </div>
+    </div>
+    <div class="sermon-card">
+      <div class="sermon-card__num">02</div>
+      <div>
+        <div class="sermon-card__series">Revelation · Part 6</div>
+        <h3>Blessings and Hope for Today</h3>
+        <div class="sermon-card__meta">Pastor Andy Wulff &nbsp;·&nbsp; June 16, 2023 &nbsp;·&nbsp; 38 min</div>
+      </div>
+      <div class="sermon-card__actions">
+        <button class="play-btn" onclick="alert('Sermon player coming soon!')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <a href="#" class="btn" style="font-size:0.65rem; padding:0.6rem 1.2rem;">Notes</a>
+      </div>
+    </div>
+    <div class="sermon-card">
+      <div class="sermon-card__num">03</div>
+      <div>
+        <div class="sermon-card__series">Ephesians · Part 12</div>
+        <h3>The Crucial Role of a Supply Line</h3>
+        <div class="sermon-card__meta">Pastor Andy Wulff &nbsp;·&nbsp; June 9, 2023 &nbsp;·&nbsp; 40 min</div>
+      </div>
+      <div class="sermon-card__actions">
+        <button class="play-btn" onclick="alert('Sermon player coming soon!')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <a href="#" class="btn" style="font-size:0.65rem; padding:0.6rem 1.2rem;">Notes</a>
+      </div>
+    </div>
+    <div class="sermon-card">
+      <div class="sermon-card__num">04</div>
+      <div>
+        <div class="sermon-card__series">Revelation · Part 5</div>
+        <h3>Standing Firm in Hard Times</h3>
+        <div class="sermon-card__meta">Pastor Mickey Counter &nbsp;·&nbsp; June 2, 2023 &nbsp;·&nbsp; 45 min</div>
+      </div>
+      <div class="sermon-card__actions">
+        <button class="play-btn" onclick="alert('Sermon player coming soon!')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <a href="#" class="btn" style="font-size:0.65rem; padding:0.6rem 1.2rem;">Notes</a>
+      </div>
+    </div>
+    <div class="sermon-card">
+      <div class="sermon-card__num">05</div>
+      <div>
+        <div class="sermon-card__series">Ephesians · Part 11</div>
+        <h3>Put on the Whole Armor of God</h3>
+        <div class="sermon-card__meta">Pastor Andy Wulff &nbsp;·&nbsp; May 26, 2023 &nbsp;·&nbsp; 37 min</div>
+      </div>
+      <div class="sermon-card__actions">
+        <button class="play-btn" onclick="alert('Sermon player coming soon!')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <a href="#" class="btn" style="font-size:0.65rem; padding:0.6rem 1.2rem;">Notes</a>
+      </div>
+    </div>
+    <div class="sermon-card">
+      <div class="sermon-card__num">06</div>
+      <div>
+        <div class="sermon-card__series">Psalms · Part 3</div>
+        <h3>My Help Comes from the Lord</h3>
+        <div class="sermon-card__meta">Pastor Mickey Counter &nbsp;·&nbsp; May 19, 2023 &nbsp;·&nbsp; 44 min</div>
+      </div>
+      <div class="sermon-card__actions">
+        <button class="play-btn" onclick="alert('Sermon player coming soon!')">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <a href="#" class="btn" style="font-size:0.65rem; padding:0.6rem 1.2rem;">Notes</a>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:3rem;">
+      <a href="https://www.youtube.com/user/hopechurchmadisonal/videos" target="_blank" class="btn btn--solid">View All on YouTube</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Verse ── -->
+<section class="verse-banner">
+  <blockquote>
+    "All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness."
+  </blockquote>
+  <div class="gold-divider"></div>
+  <cite>2 Timothy 3:16</cite>
+</section>
+
+<!-- Filter button JS -->
+<script>
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+
+<div id="footer-placeholder"></div>
+<script src="shared.js"></script>
+</body>
+</html>

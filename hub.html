@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weekly Content Hub · Hope Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy:    #1B2B4B;
+      --gold:    #B8975A;
+      --gold-lt: #D4B47C;
+      --cream:   #F7F4EE;
+      --warm:    #EDE9E0;
+      --white:   #FFFFFF;
+      --muted:   #7A7A7A;
+      --charcoal:#2A2A2A;
+      --border:  rgba(0,0,0,0.1);
+      --success: #2d7d46;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 15px; }
+    body {
+      font-family: 'Jost', sans-serif;
+      font-weight: 300;
+      background: var(--cream);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+    h1,h2,h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; }
+
+    /* ── Layout ── */
+    .hub-header {
+      background: var(--navy);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .hub-header__brand {
+      display: flex; flex-direction: column; gap: 1px;
+    }
+    .hub-header__brand span:first-child {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+    .hub-header__brand span:last-child {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .hub-tabs {
+      display: flex;
+      gap: 0;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .hub-tab {
+      padding: 0.5rem 1.2rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      color: rgba(255,255,255,0.55);
+      border-right: 1px solid rgba(255,255,255,0.15);
+      transition: all 0.2s;
+    }
+    .hub-tab:last-child { border-right: none; }
+    .hub-tab.active { background: var(--gold); color: var(--white); }
+    .hub-tab:hover:not(.active) { color: var(--white); background: rgba(255,255,255,0.06); }
+
+    .hub-body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    /* ── Form panel ── */
+    .form-panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 2rem;
+      position: sticky;
+      top: 72px;
+    }
+    .form-panel h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.25rem;
+    }
+    .form-panel > p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+    }
+    .form-section {
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .form-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .form-section__label {
+      font-size: 0.6rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 0.9rem; }
+    .field:last-child { margin-bottom: 0; }
+    .field label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      letter-spacing: 0.05em;
+    }
+    .field input, .field textarea, .field select {
+      padding: 0.6rem 0.8rem;
+      border: 1px solid rgba(0,0,0,0.14);
+      background: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      outline: none;
+      transition: border-color 0.2s;
+      border-radius: 0;
+      width: 100%;
+    }
+    .field input:focus, .field textarea:focus, .field select:focus {
+      border-color: var(--navy);
+      background: var(--white);
+    }
+    .field textarea { resize: vertical; min-height: 80px; }
+
+    /* Events repeater */
+    .event-rows { display: flex; flex-direction: column; gap: 0.75rem; }
+    .event-row {
+      background: var(--cream);
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 0.9rem;
+    }
+    .event-row-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+    .event-row-header span {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .remove-event {
+      background: none;
+      border: none;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 2px 4px;
+      transition: color 0.2s;
+    }
+    .remove-event:hover { color: #c0392b; }
+    .event-row .field { margin-bottom: 0.6rem; }
+    .event-row .field:last-child { margin-bottom: 0; }
+    .event-row-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+
+    .add-event-btn {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px dashed rgba(0,0,0,0.18);
+      background: transparent;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      margin-top: 0.75rem;
+      transition: all 0.2s;
+    }
+    .add-event-btn:hover { border-color: var(--navy); color: var(--navy); }
+
+    .generate-btn {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--navy);
+      border: none;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--white);
+      cursor: pointer;
+      margin-top: 1.5rem;
+      transition: background 0.2s;
+    }
+    .generate-btn:hover { background: #243660; }
+
+    /* ── Preview panel ── */
+    .preview-panel { min-height: 400px; }
+    .preview-pane { display: none; }
+    .preview-pane.active { display: block; }
+
+    /* copy button */
+    .copy-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--navy);
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 0;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .copy-bar span {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+    .copy-bar-actions { display: flex; gap: 0.5rem; }
+    .copy-btn {
+      padding: 0.4rem 1rem;
+      border: 1px solid rgba(255,255,255,0.25);
+      background: transparent;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.8);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .copy-btn:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+    .copy-btn.copied { border-color: #4caf50; color: #4caf50; }
+
+    /* Source code view */
+    .source-view {
+      background: #0d1117;
+      padding: 1.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: #c9d1d9;
+      white-space: pre-wrap;
+      word-break: break-all;
+      max-height: 600px;
+      overflow-y: auto;
+      display: none;
+    }
+
+    /* ────────────────────────
+       WEBSITE SNIPPET PREVIEW
+    ──────────────────────── */
+    .web-preview {
+      background: var(--warm);
+      border: 1px solid var(--border);
+      padding: 2rem;
+    }
+    .web-week-label {
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .web-preview h2 {
+      font-size: 1.9rem;
+      color: var(--navy);
+      margin-bottom: 0.3rem;
+    }
+    .web-preview .web-verse {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+    }
+    .web-summary { font-size: 0.92rem; color: var(--muted); margin-bottom: 1.5rem; line-height: 1.7; }
+    .web-event-list { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.5rem; }
+    .web-event-item {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: 0.75rem;
+      align-items: center;
+      background: var(--white);
+      padding: 0.75rem 1rem;
+      border-left: 3px solid var(--gold);
+    }
+    .web-event-date-mini {
+      text-align: center;
+    }
+    .web-event-date-mini .mo { font-size: 0.55rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); display: block; }
+    .web-event-date-mini .dy { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; color: var(--navy); line-height: 1; display: block; }
+    .web-event-name { font-size: 0.88rem; font-weight: 500; color: var(--charcoal); }
+    .web-event-time { font-size: 0.78rem; color: var(--muted); }
+    .web-prayer { background: var(--navy); padding: 1.25rem 1.5rem; margin-top: 0.5rem; }
+    .web-prayer p { font-size: 0.88rem; color: rgba(255,255,255,0.7); }
+    .web-prayer strong { color: var(--gold-lt); font-weight: 500; }
+
+    /* ────────────────────────
+       EMAIL PREVIEW
+    ──────────────────────── */
+    .email-preview {
+      background: #f0ede6;
+      border: 1px solid var(--border);
+      padding: 2rem 1rem;
+    }
+    .email-wrap {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--white);
+      font-family: Georgia, serif;
+    }
+    .email-header {
+      background: #1B2B4B;
+      padding: 28px 32px 24px;
+      text-align: center;
+    }
+    .email-header h1 {
+      color: #fff;
+      font-family: Georgia, serif;
+      font-size: 22px;
+      font-weight: normal;
+      margin-bottom: 4px;
+    }
+    .email-header p {
+      color: #B8975A;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-family: Arial, sans-serif;
+      margin: 0;
+    }
+    .email-gold-bar { height: 3px; background: #B8975A; }
+    .email-body { padding: 32px; }
+    .email-greeting { font-size: 15px; color: #2A2A2A; margin-bottom: 16px; line-height: 1.7; }
+    .email-summary { font-size: 15px; color: #555; margin-bottom: 24px; line-height: 1.7; }
+    .email-section-label {
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #B8975A;
+      border-bottom: 1px solid #e0dbd0;
+      padding-bottom: 6px;
+      margin-bottom: 14px;
+    }
+    .email-verse-box {
+      background: #F7F4EE;
+      border-left: 3px solid #B8975A;
+      padding: 14px 18px;
+      margin-bottom: 24px;
+    }
+    .email-verse-box p {
+      font-style: italic;
+      font-size: 14px;
+      color: #444;
+      margin-bottom: 4px;
+      line-height: 1.6;
+    }
+    .email-verse-box cite {
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      color: #B8975A;
+      font-style: normal;
+    }
+    .email-event-row {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      margin-bottom: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid #f0ede6;
+    }
+    .email-event-row:last-child { border-bottom: none; }
+    .email-event-cal {
+      min-width: 44px;
+      width: 44px;
+      height: 44px;
+      background: #1B2B4B;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .email-event-cal .mo { font-family: Arial, sans-serif; font-size: 9px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #B8975A; }
+    .email-event-cal .dy { font-family: Georgia, serif; font-size: 18px; color: #fff; line-height: 1; }
+    .email-event-title { font-size: 14px; font-weight: bold; color: #1B2B4B; margin-bottom: 2px; }
+    .email-event-meta  { font-family: Arial, sans-serif; font-size: 12px; color: #888; }
+    .email-prayer-box {
+      background: #1B2B4B;
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .email-prayer-label { font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #B8975A; margin-bottom: 8px; }
+    .email-prayer-box p { font-family: Arial, sans-serif; font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+    .email-image-placeholder {
+      width: 100%;
+      background: #EDE9E0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 24px;
+      min-height: 120px;
+      border: 2px dashed #C8C2B5;
+    }
+    .email-image-placeholder p { font-family: Arial, sans-serif; font-size: 12px; color: #999; }
+    .email-image-tag {
+      width: 100%;
+      display: block;
+      max-height: 220px;
+      object-fit: cover;
+    }
+    .email-cta {
+      text-align: center;
+      padding: 8px 0 4px;
+    }
+    .email-cta a {
+      display: inline-block;
+      background: #1B2B4B;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      text-decoration: none;
+    }
+    .email-footer {
+      background: #111B2E;
+      padding: 20px 32px;
+      text-align: center;
+    }
+    .email-footer p { font-family: Arial, sans-serif; font-size: 11px; color: rgba(255,255,255,0.35); line-height: 1.6; margin: 0; }
+    .email-footer a { color: #B8975A; text-decoration: none; }
+
+    /* ────────────────────────
+       PAMPHLET PREVIEW
+    ──────────────────────── */
+    .pamphlet-preview {
+      background: #888;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: center;
+    }
+    .pamphlet {
+      width: 680px;
+      background: var(--white);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 440px;
+      font-family: 'Jost', sans-serif;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+    }
+    /* Left panel */
+    .pam-left {
+      background: var(--navy);
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .pam-church-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--white);
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+    .pam-church-sub {
+      font-size: 0.58rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+    .pam-divider { width: 32px; height: 1px; background: rgba(255,255,255,0.2); margin-bottom: 1.25rem; }
+    .pam-series-label {
+      font-size: 0.55rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .pam-sermon-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--white);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .pam-sermon-ref {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: auto;
+    }
+    .pam-date-box {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.75rem 1rem;
+      margin-top: 1.5rem;
+    }
+    .pam-date-box p { font-size: 0.72rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
+    .pam-date-box strong { color: var(--white); font-weight: 500; }
+    /* Right panel */
+    .pam-right {
+      padding: 1.75rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+    .pam-section-label {
+      font-size: 0.55rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .pam-verse {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: var(--charcoal);
+      line-height: 1.5;
+    }
+    .pam-verse cite { font-family: 'Jost', sans-serif; font-size: 0.65rem; font-style: normal; color: var(--muted); display: block; margin-top: 3px; }
+    .pam-event-row { display: flex; gap: 0.6rem; align-items: flex-start; margin-bottom: 0.5rem; }
+    .pam-event-row:last-child { margin-bottom: 0; }
+    .pam-event-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
+    .pam-event-name { font-size: 0.75rem; font-weight: 500; color: var(--charcoal); }
+    .pam-event-meta { font-size: 0.68rem; color: var(--muted); }
+    .pam-prayer-label { font-size: 0.55rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .pam-prayer-text { font-size: 0.75rem; color: var(--muted); line-height: 1.55; }
+    .pam-notes {
+      flex: 1;
+      border: 1px dashed rgba(0,0,0,0.1);
+      padding: 0.5rem;
+      min-height: 60px;
+    }
+    .pam-notes p { font-size: 0.62rem; color: rgba(0,0,0,0.2); font-style: italic; }
+
+    /* ── Print styles ── */
+    @media print {
+      .hub-header, .form-panel, .copy-bar, .hub-tabs { display: none !important; }
+      .hub-body { grid-template-columns: 1fr; padding: 0; gap: 0; }
+      .preview-panel { min-height: unset; }
+      .preview-pane { display: block !important; }
+      .pamphlet-preview { background: none; padding: 0; }
+    }
+
+    @media (max-width: 900px) {
+      .hub-body { grid-template-columns: 1fr; }
+      .form-panel { position: static; }
+      .pamphlet { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header class="hub-header">
+  <div class="hub-header__brand">
+    <span>Hope Church</span>
+    <span>Weekly Content Hub</span>
+  </div>
+  <div class="hub-tabs">
+    <button class="hub-tab active" data-pane="website">Website</button>
+    <button class="hub-tab" data-pane="email">Email</button>
+    <button class="hub-tab" data-pane="pamphlet">Pamphlet</button>
+  </div>
+</header>
+
+<div class="hub-body">
+
+  <!-- ════════════════════════
+       FORM PANEL
+  ═════════════════════════ -->
+  <aside class="form-panel">
+    <h2>This Week's Content</h2>
+    <p>Fill in once — updates all three outputs instantly.</p>
+
+    <!-- Date & Service -->
+    <div class="form-section">
+      <span class="form-section__label">Service Info</span>
+      <div class="field">
+        <label>Sunday Date</label>
+        <input type="text" id="f-date" placeholder="e.g. April 13, 2025" />
+      </div>
+      <div class="field">
+        <label>Sermon Series</label>
+        <input type="text" id="f-series" placeholder="e.g. Revelation" />
+      </div>
+      <div class="field">
+        <label>Sermon Title</label>
+        <input type="text" id="f-title" placeholder="e.g. A Letter from God" />
+      </div>
+      <div class="field">
+        <label>Scripture Reference</label>
+        <input type="text" id="f-scripture" placeholder="e.g. Revelation 2:1–7" />
+      </div>
+      <div class="field">
+        <label>Preacher</label>
+        <input type="text" id="f-preacher" placeholder="e.g. Pastor Mickey Counter" />
+      </div>
+    </div>
+
+    <!-- Message -->
+    <div class="form-section">
+      <span class="form-section__label">Weekly Message</span>
+      <div class="field">
+        <label>Greeting / Opening (email only)</label>
+        <textarea id="f-greeting" placeholder="e.g. Hope family, what a week it's been…"></textarea>
+      </div>
+      <div class="field">
+        <label>Weekly Summary (website + email)</label>
+        <textarea id="f-summary" placeholder="A short paragraph — what's on your heart for the congregation this week?"></textarea>
+      </div>
+      <div class="field">
+        <label>Verse of the Week</label>
+        <input type="text" id="f-verse" placeholder="e.g. "He gives power to the faint…"" />
+      </div>
+      <div class="field">
+        <label>Verse Reference</label>
+        <input type="text" id="f-verseref" placeholder="e.g. Isaiah 40:29" />
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class="form-section">
+      <span class="form-section__label">Featured Image (optional)</span>
+      <div class="field">
+        <label>Image URL</label>
+        <input type="text" id="f-image" placeholder="https://… or leave blank" />
+      </div>
+      <div class="field">
+        <label>Image Caption</label>
+        <input type="text" id="f-imagecap" placeholder="e.g. Sunday worship — April 6" />
+      </div>
+    </div>
+
+    <!-- Prayer -->
+    <div class="form-section">
+      <span class="form-section__label">Prayer Focus</span>
+      <div class="field">
+        <label>This Week's Prayer Focus</label>
+        <textarea id="f-prayer" placeholder="e.g. Pray for the Wulff family as they…"></textarea>
+      </div>
+    </div>
+
+    <!-- Events -->
+    <div class="form-section">
+      <span class="form-section__label">Upcoming Events</span>
+      <div class="event-rows" id="eventRows"></div>
+      <button class="add-event-btn" id="addEventBtn">+ Add Event</button>
+    </div>
+
+    <button class="generate-btn" id="generateBtn">Generate All Outputs ↓</button>
+  </aside>
+
+  <!-- ════════════════════════
+       PREVIEW PANEL
+  ═════════════════════════ -->
+  <div class="preview-panel">
+
+    <!-- ── WEBSITE PANE ── -->
+    <div class="preview-pane active" id="pane-website">
+      <div class="copy-bar">
+        <span>Website Snippet</span>
+        <div class="copy-bar-actions">
+          <button class="copy-btn" id="copyWebHTML">Copy HTML</button>
+        </div>
+      </div>
+      <div id="webPreview" class="web-preview">
+        <div style="text-align:center;padding:3rem 2rem;color:var(--muted);">
+          <p style="font-size:0.9rem;">Fill in the form and click <strong>Generate</strong> to preview your website snippet.</p>
+        </div>
+      </div>
+      <div class="source-view" id="webSource"></div>
+    </div>
+
+    <!-- ── EMAIL PANE ── -->
+    <div class="preview-pane" id="pane-email">
+      <div class="copy-bar">
+        <span>Mailchimp-Ready HTML Email</span>
+        <div class="copy-bar-actions">
+          <button class="copy-btn" id="copyEmailHTML">Copy HTML</button>
+          <button class="copy-btn" id="toggleEmailSrc">View Source</button>
+        </div>
+      </div>
+      <div id="emailPreview" class="email-preview">
+        <div style="text-align:center;padding:3rem 2rem;color:#888;">
+          <p style="font-size:0.9rem;font-family:Arial,sans-serif;">Fill in the form and click <strong>Generate</strong> to preview your email.</p>
+        </div>
+      </div>
+      <div class="source-view" id="emailSource"></div>
+    </div>
+
+    <!-- ── PAMPHLET PANE ── -->
+    <div class="preview-pane" id="pane-pamphlet">
+      <div class="copy-bar">
+        <span>Printable Sunday Pamphlet</span>
+        <div class="copy-bar-actions">
+          <button class="copy-btn" id="printPamphlet">Print / Save PDF</button>
+        </div>
+      </div>
+      <div id="pamphletPreview" class="pamphlet-preview">
+        <div style="background:var(--white);padding:3rem 2rem;text-align:center;width:340px;color:var(--muted);">
+          <p style="font-size:0.9rem;">Fill in the form and click <strong>Generate</strong> to preview your pamphlet.</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /preview-panel -->
+</div><!-- /hub-body -->
+
+<script>
+/* ═══════════════════════════════════
+   EVENT REPEATER
+═══════════════════════════════════ */
+let eventCount = 0;
+
+function addEventRow(data = {}) {
+  eventCount++;
+  const n = eventCount;
+  const row = document.createElement('div');
+  row.className = 'event-row';
+  row.id = `erow-${n}`;
+  row.innerHTML = `
+    <div class="event-row-header">
+      <span>Event ${n}</span>
+      <button class="remove-event" onclick="removeEvent(${n})" title="Remove">✕</button>
+    </div>
+    <div class="field"><label>Event Name</label>
+      <input type="text" id="e-name-${n}" value="${data.name||''}" placeholder="e.g. Community Groups" /></div>
+    <div class="event-row-inner">
+      <div class="field"><label>Day / Date</label>
+        <input type="text" id="e-date-${n}" value="${data.date||''}" placeholder="e.g. Wed Apr 16" /></div>
+      <div class="field"><label>Time</label>
+        <input type="text" id="e-time-${n}" value="${data.time||''}" placeholder="e.g. 6:30 PM" /></div>
+    </div>
+    <div class="field"><label>Location</label>
+      <input type="text" id="e-loc-${n}" value="${data.loc||''}" placeholder="e.g. Fellowship Hall" /></div>
+  `;
+  document.getElementById('eventRows').appendChild(row);
+}
+
+function removeEvent(n) {
+  const el = document.getElementById(`erow-${n}`);
+  if (el) el.remove();
+}
+
+document.getElementById('addEventBtn').addEventListener('click', () => addEventRow());
+
+// Seed with a couple starter events
+addEventRow({ name:'Community Groups', date:'Wed Apr 16', time:'6:30 PM', loc:'Various homes, Madison' });
+addEventRow({ name:'Missions Night', date:'Fri Apr 18', time:'6:00 PM', loc:'Hope Church — Sanctuary' });
+
+
+/* ═══════════════════════════════════
+   TAB SWITCHING
+═══════════════════════════════════ */
+document.querySelectorAll('.hub-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.hub-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.preview-pane').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(`pane-${tab.dataset.pane}`).classList.add('active');
+  });
+});
+
+
+/* ═══════════════════════════════════
+   READ FORM
+═══════════════════════════════════ */
+function readForm() {
+  const get = id => (document.getElementById(id)||{}).value || '';
+  const events = [];
+  document.querySelectorAll('.event-row').forEach(row => {
+    const n = row.id.replace('erow-','');
+    const name = get(`e-name-${n}`);
+    if (!name) return;
+    events.push({
+      name,
+      date: get(`e-date-${n}`),
+      time: get(`e-time-${n}`),
+      loc:  get(`e-loc-${n}`),
+    });
+  });
+  // Parse month/day from date string like "Wed Apr 16"
+  const dateStr = get('f-date') || 'This Sunday';
+  return {
+    date:      dateStr,
+    series:    get('f-series')   || 'Current Series',
+    title:     get('f-title')    || 'Sunday Message',
+    scripture: get('f-scripture'),
+    preacher:  get('f-preacher'),
+    greeting:  get('f-greeting'),
+    summary:   get('f-summary'),
+    verse:     get('f-verse'),
+    verseref:  get('f-verseref'),
+    image:     get('f-image'),
+    imagecap:  get('f-imagecap'),
+    prayer:    get('f-prayer'),
+    events,
+  };
+}
+
+function parseDateMiniParts(dateStr) {
+  // Try to extract month abbr and day number from strings like "Wed Apr 16" or "April 13, 2025"
+  const months = { jan:'Jan',feb:'Feb',mar:'Mar',apr:'Apr',may:'May',jun:'Jun',
+                   jul:'Jul',aug:'Aug',sep:'Sep',oct:'Oct',nov:'Nov',dec:'Dec' };
+  const lower = dateStr.toLowerCase();
+  let mo = '', dy = '';
+  for (const [k,v] of Object.entries(months)) {
+    if (lower.includes(k)) { mo = v; break; }
+  }
+  const match = dateStr.match(/\d+/g);
+  if (match) dy = match[match.length-1].replace(/^0/,'');
+  return { mo: mo || '—', dy: dy || '—' };
+}
+
+
+/* ═══════════════════════════════════
+   BUILD WEBSITE HTML
+═══════════════════════════════════ */
+function buildWebHTML(d) {
+  const eventsHTML = d.events.map(ev => {
+    const {mo, dy} = parseDateMiniParts(ev.date);
+    return `
+      <div class="web-event-item">
+        <div class="web-event-date-mini">
+          <span class="mo">${mo}</span>
+          <span class="dy">${dy}</span>
+        </div>
+        <div>
+          <div class="web-event-name">${ev.name}</div>
+          <div class="web-event-time">${ev.time}${ev.loc ? ' · ' + ev.loc : ''}</div>
+        </div>
+      </div>`;
+  }).join('');
+
+  return `
+<div class="web-week-label">Week of ${d.date}</div>
+<h2>${d.title}</h2>
+${d.verse ? `<p class="web-verse">"${d.verse}" — ${d.verseref}</p>` : ''}
+${d.summary ? `<p class="web-summary">${d.summary}</p>` : ''}
+${d.events.length ? `
+<div style="font-size:0.62rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;">Upcoming Events</div>
+<div class="web-event-list">${eventsHTML}</div>` : ''}
+${d.prayer ? `
+<div class="web-prayer">
+  <p><strong>This week's prayer focus:</strong> ${d.prayer}</p>
+</div>` : ''}`;
+}
+
+
+/* ═══════════════════════════════════
+   BUILD EMAIL HTML (Mailchimp-ready)
+═══════════════════════════════════ */
+function buildEmailHTML(d) {
+  const eventsRows = d.events.map(ev => {
+    const {mo, dy} = parseDateMiniParts(ev.date);
+    return `
+      <tr>
+        <td style="padding:0 0 14px;border-bottom:1px solid #f0ede6;vertical-align:top;" colspan="2">
+          <table cellpadding="0" cellspacing="0" width="100%"><tr>
+            <td style="width:52px;vertical-align:top;">
+              <table cellpadding="0" cellspacing="0" style="width:44px;height:44px;background:#1B2B4B;text-align:center;">
+                <tr><td style="padding-top:7px;font-family:Arial,sans-serif;font-size:9px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#B8975A;">${mo}</td></tr>
+                <tr><td style="font-family:Georgia,serif;font-size:18px;color:#fff;line-height:1;">${dy}</td></tr>
+              </table>
+            </td>
+            <td style="padding-left:12px;vertical-align:middle;">
+              <div style="font-size:14px;font-weight:bold;color:#1B2B4B;margin-bottom:2px;">${ev.name}</div>
+              <div style="font-family:Arial,sans-serif;font-size:12px;color:#888;">${ev.time}${ev.loc ? ' · ' + ev.loc : ''}</div>
+            </td>
+          </tr></table>
+        </td>
+      </tr>`;
+  }).join('');
+
+  const imageBlock = d.image
+    ? `<img src="${d.image}" alt="${d.imagecap || ''}" width="536" style="display:block;width:100%;max-height:240px;object-fit:cover;" />`
+    : `<table cellpadding="0" cellspacing="0" width="100%" style="background:#EDE9E0;border:2px dashed #C8C2B5;min-height:100px;">
+         <tr><td style="text-align:center;padding:32px;font-family:Arial,sans-serif;font-size:12px;color:#aaa;">
+           [Paste your image URL into the hub to show a photo here]
+         </td></tr>
+       </table>`;
+
+  return `<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Hope Church — Week of ${d.date}</title></head>
+<body style="margin:0;padding:0;background:#f0ede6;font-family:Georgia,serif;">
+<table cellpadding="0" cellspacing="0" width="100%" style="background:#f0ede6;padding:24px 0;">
+<tr><td align="center">
+<table cellpadding="0" cellspacing="0" width="600" style="max-width:600px;background:#fff;">
+
+  <!-- Header -->
+  <tr><td style="background:#1B2B4B;padding:28px 32px 22px;text-align:center;">
+    <div style="font-family:Georgia,serif;font-size:22px;color:#fff;font-weight:normal;margin-bottom:4px;">Hope Church</div>
+    <div style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#B8975A;">Madison, Alabama</div>
+  </td></tr>
+  <tr><td style="height:3px;background:#B8975A;"></td></tr>
+
+  <!-- Body -->
+  <tr><td style="padding:32px;">
+
+    <!-- Greeting -->
+    ${d.greeting ? `<p style="font-size:15px;color:#2A2A2A;line-height:1.7;margin-bottom:18px;">${d.greeting}</p>` : ''}
+
+    <!-- Sermon banner -->
+    <table cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:24px;">
+      <tr>
+        <td style="background:#F7F4EE;border-left:3px solid #1B2B4B;padding:14px 18px;">
+          <div style="font-family:Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#B8975A;margin-bottom:4px;">${d.series}</div>
+          <div style="font-size:18px;color:#1B2B4B;font-weight:normal;margin-bottom:3px;">${d.title}</div>
+          ${d.scripture ? `<div style="font-family:Arial,sans-serif;font-size:12px;color:#888;">${d.scripture}${d.preacher ? ' · ' + d.preacher : ''}</div>` : ''}
+        </td>
+      </tr>
+    </table>
+
+    <!-- Image -->
+    ${imageBlock}
+    ${d.imagecap && d.image ? `<p style="font-family:Arial,sans-serif;font-size:11px;color:#aaa;text-align:center;margin:6px 0 20px;">${d.imagecap}</p>` : '<div style="margin-bottom:20px;"></div>'}
+
+    <!-- Summary -->
+    ${d.summary ? `<p style="font-size:15px;color:#555;line-height:1.7;margin-bottom:24px;">${d.summary}</p>` : ''}
+
+    <!-- Verse -->
+    ${d.verse ? `
+    <table cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:24px;">
+      <tr><td style="background:#F7F4EE;border-left:3px solid #B8975A;padding:14px 18px;">
+        <p style="font-style:italic;font-size:14px;color:#444;line-height:1.6;margin:0 0 4px;">"${d.verse}"</p>
+        <cite style="font-family:Arial,sans-serif;font-size:11px;color:#B8975A;font-style:normal;">${d.verseref}</cite>
+      </td></tr>
+    </table>` : ''}
+
+    <!-- Events -->
+    ${d.events.length ? `
+    <div style="font-family:Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#B8975A;border-bottom:1px solid #e0dbd0;padding-bottom:6px;margin-bottom:14px;">Upcoming Events</div>
+    <table cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:24px;">
+      ${eventsRows}
+    </table>` : ''}
+
+    <!-- Prayer -->
+    ${d.prayer ? `
+    <table cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:24px;">
+      <tr><td style="background:#1B2B4B;padding:20px 24px;">
+        <div style="font-family:Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#B8975A;margin-bottom:8px;">Prayer Focus</div>
+        <p style="font-family:Arial,sans-serif;font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6;margin:0;">${d.prayer}</p>
+      </td></tr>
+    </table>` : ''}
+
+    <!-- CTA -->
+    <table cellpadding="0" cellspacing="0" width="100%">
+      <tr><td align="center" style="padding:8px 0;">
+        <a href="https://www.hopeinmadison.org" style="display:inline-block;background:#1B2B4B;color:#fff;font-family:Arial,sans-serif;font-size:11px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;padding:12px 28px;text-decoration:none;">Visit hopeinmadison.org</a>
+      </td></tr>
+    </table>
+
+  </td></tr><!-- /body -->
+
+  <!-- Footer -->
+  <tr><td style="background:#111B2E;padding:20px 32px;text-align:center;">
+    <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(255,255,255,0.35);line-height:1.6;margin:0;">
+      Hope Church · 1661 Balch Rd, Madison AL 35757 · (256) 830-5544<br/>
+      <a href="*|UNSUB|*" style="color:#B8975A;text-decoration:none;">Unsubscribe</a> · 
+      <a href="*|UPDATE_PROFILE|*" style="color:#B8975A;text-decoration:none;">Update preferences</a>
+    </p>
+  </td></tr>
+
+</table>
+</td></tr>
+</table>
+</body></html>`;
+}
+
+
+/* ═══════════════════════════════════
+   BUILD PAMPHLET HTML
+═══════════════════════════════════ */
+function buildPamphletHTML(d) {
+  const eventsHTML = d.events.slice(0, 5).map(ev => `
+    <div class="pam-event-row">
+      <div class="pam-event-dot"></div>
+      <div>
+        <div class="pam-event-name">${ev.name}</div>
+        <div class="pam-event-meta">${ev.date}${ev.time ? ' · ' + ev.time : ''}${ev.loc ? ' · ' + ev.loc : ''}</div>
+      </div>
+    </div>`).join('');
+
+  return `
+  <div class="pamphlet">
+    <!-- Left: Dark panel -->
+    <div class="pam-left">
+      <div class="pam-church-name">Hope Church</div>
+      <div class="pam-church-sub">Madison, Alabama</div>
+      <div class="pam-divider"></div>
+      <div class="pam-series-label">${d.series}</div>
+      <div class="pam-sermon-title">${d.title}</div>
+      ${d.scripture ? `<div class="pam-sermon-ref">${d.scripture}</div>` : ''}
+      <div class="pam-date-box">
+        <p><strong>${d.date}</strong><br/>Sunday Worship · 10:00 a.m.<br/>1661 Balch Rd, Madison AL</p>
+        ${d.preacher ? `<p style="margin-top:6px;">Preaching: <strong>${d.preacher}</strong></p>` : ''}
+      </div>
+    </div>
+    <!-- Right: Content panel -->
+    <div class="pam-right">
+      ${d.verse ? `
+      <div>
+        <div class="pam-section-label">Verse of the Week</div>
+        <div class="pam-verse">"${d.verse}" <cite>${d.verseref}</cite></div>
+      </div>` : ''}
+      ${d.events.length ? `
+      <div>
+        <div class="pam-section-label">This Week at Hope</div>
+        ${eventsHTML}
+      </div>` : ''}
+      ${d.prayer ? `
+      <div>
+        <div class="pam-prayer-label">Prayer Focus</div>
+        <div class="pam-prayer-text">${d.prayer}</div>
+      </div>` : ''}
+      <div style="flex:1;">
+        <div class="pam-section-label">Notes</div>
+        <div class="pam-notes"><p>Use this space during the sermon…</p></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+
+/* ═══════════════════════════════════
+   GENERATE
+═══════════════════════════════════ */
+document.getElementById('generateBtn').addEventListener('click', generate);
+
+// Also live-update as user types
+let liveTimer;
+document.querySelector('.form-panel').addEventListener('input', () => {
+  clearTimeout(liveTimer);
+  liveTimer = setTimeout(generate, 400);
+});
+
+function generate() {
+  const d = readForm();
+
+  // Website
+  const webInner = buildWebHTML(d);
+  document.getElementById('webPreview').className = 'web-preview';
+  document.getElementById('webPreview').innerHTML = webInner;
+  document.getElementById('webSource').textContent =
+    `<!-- Paste this into your events or home page -->\n<div class="weekly-snapshot">\n` + webInner + `\n</div>`;
+
+  // Email
+  const emailHTML = buildEmailHTML(d);
+  const emailWrap = document.getElementById('emailPreview');
+  emailWrap.innerHTML = `<div style="background:#f0ede6;padding:1.5rem 0.5rem;">
+    <div style="max-width:600px;margin:0 auto;">${emailHTML.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1]?.trim() || emailHTML}</div>
+  </div>`;
+  document.getElementById('emailSource').textContent = emailHTML;
+
+  // Pamphlet
+  document.getElementById('pamphletPreview').innerHTML = buildPamphletHTML(d);
+}
+
+
+/* ═══════════════════════════════════
+   COPY / PRINT ACTIONS
+═══════════════════════════════════ */
+function copyText(text, btn) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = btn.dataset.label;
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+document.getElementById('copyWebHTML').dataset.label = 'Copy HTML';
+document.getElementById('copyWebHTML').addEventListener('click', function() {
+  const d = readForm();
+  copyText(`<!-- Hope Church weekly snippet — week of ${d.date} -->\n<div class="weekly-snapshot">\n` + buildWebHTML(d) + `\n</div>`, this);
+});
+
+document.getElementById('copyEmailHTML').dataset.label = 'Copy HTML';
+document.getElementById('copyEmailHTML').addEventListener('click', function() {
+  copyText(buildEmailHTML(readForm()), this);
+});
+
+let emailSrcVisible = false;
+document.getElementById('toggleEmailSrc').dataset.label = 'View Source';
+document.getElementById('toggleEmailSrc').addEventListener('click', function() {
+  emailSrcVisible = !emailSrcVisible;
+  document.getElementById('emailSource').style.display = emailSrcVisible ? 'block' : 'none';
+  this.textContent = emailSrcVisible ? 'Hide Source' : 'View Source';
+});
+
+document.getElementById('printPamphlet').addEventListener('click', () => {
+  // Open pamphlet in a print window
+  const d = readForm();
+  const win = window.open('', '_blank');
+  win.document.write(`<!DOCTYPE html><html><head>
+    <meta charset="UTF-8"/>
+    <title>Hope Church — ${d.date} — Sunday Pamphlet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+    <style>
+      :root{--navy:#1B2B4B;--gold:#B8975A;--gold-lt:#D4B47C;--cream:#F7F4EE;--warm:#EDE9E0;--white:#fff;--muted:#7A7A7A;--charcoal:#2A2A2A;}
+      *{box-sizing:border-box;margin:0;padding:0;}
+      body{background:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;}
+      ${document.querySelector('style').textContent}
+      @media print{body{margin:0;padding:0;}}
+    </style>
+  </head><body>
+    ${buildPamphletHTML(d)}
+    <script>window.onload=()=>{window.print();}<\/script>
+  </body></html>`);
+  win.document.close();
+});
+
+
+/* ═══════════════════════════════════
+   AUTO-GENERATE ON LOAD WITH SAMPLE DATA
+═══════════════════════════════════ */
+window.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('f-date').value      = 'April 13, 2025';
+  document.getElementById('f-series').value    = 'Revelation';
+  document.getElementById('f-title').value     = 'A Letter from God';
+  document.getElementById('f-scripture').value = 'Revelation 2:1–7';
+  document.getElementById('f-preacher').value  = 'Pastor Mickey Counter';
+  document.getElementById('f-greeting').value  = 'Hope family — what a week it has been. We are so grateful for each of you and excited to gather again this Sunday.';
+  document.getElementById('f-summary').value   = 'This Sunday we continue our series through the Book of Revelation. Pastor Mickey will be preaching from Revelation 2, where Jesus addresses the church at Ephesus with words of both praise and challenge. Come ready to be encouraged and sharpened.';
+  document.getElementById('f-verse').value     = 'He gives power to the faint, and to him who has no might he increases strength.';
+  document.getElementById('f-verseref').value  = 'Isaiah 40:29';
+  document.getElementById('f-prayer').value    = 'Please pray for the Wulff family as Andy travels for a speaking engagement this week, and for our Missions Night on April 18 — that God would stir hearts toward the nations.';
+  generate();
+});
+</script>
+</body>
+</html>
+`;

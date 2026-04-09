@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact · Hope Church Madison</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .prayer-section {
+      background: var(--navy);
+      padding: 5rem 0;
+    }
+    .prayer-form {
+      max-width: 680px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 3rem;
+    }
+    .prayer-form .form-group label { color: rgba(255,255,255,0.7); }
+    .prayer-form input,
+    .prayer-form textarea,
+    .prayer-form select {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.12);
+      color: var(--white);
+    }
+    .prayer-form input::placeholder,
+    .prayer-form textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .prayer-form input:focus,
+    .prayer-form textarea:focus { border-color: var(--gold); }
+
+    .map-placeholder {
+      width: 100%;
+      height: 320px;
+      background: linear-gradient(135deg, #1B2B4B, #243660);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .map-placeholder p {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- ── Page Hero ── -->
+<section class="page-hero">
+  <div class="container" style="position:relative; z-index:2;">
+    <span class="eyebrow">We'd Love to Hear from You</span>
+    <h1>Contact &amp; Visit</h1>
+    <p>Have questions? Planning a visit? We'd love to connect with you before Sunday.</p>
+  </div>
+</section>
+
+<!-- ── Info Boxes ── -->
+<section class="section" style="padding-bottom:1rem;">
+  <div class="container">
+    <div class="info-boxes">
+      <div class="info-box">
+        <h4>Service Times</h4>
+        <p>Sunday Worship<br><strong>10:00 a.m.</strong><br><br>Office Hours<br>Mon–Fri, 10am–4pm</p>
+      </div>
+      <div class="info-box">
+        <h4>Location</h4>
+        <p>1661 Balch Rd<br>Madison, AL 35757<br><br><a href="https://maps.google.com" target="_blank" style="color:var(--navy); border-bottom:1px solid var(--gold); font-size:0.85rem;">Get Directions →</a></p>
+      </div>
+      <div class="info-box">
+        <h4>Get in Touch</h4>
+        <p><a href="tel:2568305544" style="color:var(--charcoal);">(256) 830-5544</a><br><br><a href="mailto:info@hopeinmadison.org" style="color:var(--charcoal); font-size:0.9rem;">info@hopeinmadison.org</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Map ── -->
+<section style="padding: 0 2rem 4rem; max-width:var(--max-w); margin:0 auto;">
+  <div class="map-placeholder">
+    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(184,151,90,0.6)" stroke-width="1.5">
+      <path d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <p>1661 Balch Rd, Madison, AL 35757</p>
+    <a href="https://maps.google.com/?q=1661+Balch+Rd+Madison+AL+35757" target="_blank" class="btn btn--gold" style="font-size:0.7rem;">Open in Google Maps</a>
+  </div>
+</section>
+
+<!-- ── Contact Form ── -->
+<section class="section section--warm" style="padding-top:3rem;">
+  <div class="container">
+    <div style="max-width:720px; margin:0 auto;">
+      <span class="eyebrow">Connection Card</span>
+      <h2>Plan Your Visit</h2>
+      <div class="gold-divider gold-divider--left"></div>
+      <p style="margin-bottom:0;">Fill this out and one of our pastors or ministry leaders will reach out before Sunday. No pressure — just a friendly hello.</p>
+
+      <form class="form-grid" onsubmit="event.preventDefault(); document.getElementById('form-thanks').style.display='block'; this.style.display='none';">
+        <div class="form-group">
+          <label for="first">First Name</label>
+          <input type="text" id="first" placeholder="Jane" required />
+        </div>
+        <div class="form-group">
+          <label for="last">Last Name</label>
+          <input type="text" id="last" placeholder="Smith" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" placeholder="jane@example.com" required />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone (optional)</label>
+          <input type="tel" id="phone" placeholder="(256) 555-1234" />
+        </div>
+        <div class="form-group form-group--full">
+          <label for="stage">Life Stage</label>
+          <select id="stage">
+            <option value="">Select one…</option>
+            <option>Single</option>
+            <option>Married (no kids)</option>
+            <option>Married with young children</option>
+            <option>Married with older children</option>
+            <option>Empty nester / Retired</option>
+            <option>College student</option>
+          </select>
+        </div>
+        <div class="form-group form-group--full">
+          <label for="hear">How did you hear about us?</label>
+          <select id="hear">
+            <option value="">Select one…</option>
+            <option>A friend or family member</option>
+            <option>Google search</option>
+            <option>Facebook</option>
+            <option>Drove by the building</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group form-group--full">
+          <label for="msg">Anything you'd like us to know?</label>
+          <textarea id="msg" placeholder="Questions, prayer requests, or just a hello…"></textarea>
+        </div>
+        <div class="form-group--full">
+          <button type="submit" class="btn btn--solid">Send My Card</button>
+        </div>
+      </form>
+
+      <div id="form-thanks" style="display:none; padding:3rem; text-align:center; background:var(--white); border-left:3px solid var(--gold);">
+        <h3 style="margin-bottom:0.75rem;">Thank you!</h3>
+        <p>We're so glad you reached out. Someone from our team will be in touch soon. We hope to see you this Sunday at 10:00 a.m.!</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Prayer Request ── -->
+<section class="prayer-section">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:3rem;">
+      <span class="eyebrow">Prayer</span>
+      <h2 style="color:var(--white);">Submit a Prayer Request</h2>
+      <div class="gold-divider"></div>
+      <p style="max-width:480px; margin:0 auto; color:rgba(255,255,255,0.55);">We believe prayer changes things. Our pastors and elders pray over every request we receive. Nothing is too small or too big to bring before God.</p>
+    </div>
+    <form class="prayer-form" onsubmit="event.preventDefault(); document.getElementById('prayer-thanks').style.display='block'; this.style.display='none';">
+      <div class="form-grid" style="margin-top:0;">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="First name (or anonymous)" />
+        </div>
+        <div class="form-group">
+          <label>Email (optional)</label>
+          <input type="email" placeholder="For a follow-up" />
+        </div>
+        <div class="form-group form-group--full">
+          <label>Prayer Request</label>
+          <textarea placeholder="Share what's on your heart…" style="min-height:160px;"></textarea>
+        </div>
+        <div class="form-group form-group--full">
+          <label style="display:flex; align-items:center; gap:0.75rem; text-transform:none; letter-spacing:0; font-size:0.85rem; cursor:pointer;">
+            <input type="checkbox" style="width:16px; height:16px; border:none; border-radius:0; padding:0; flex-shrink:0;" />
+            Keep my request private (shared only with pastoral staff)
+          </label>
+        </div>
+        <div class="form-group--full">
+          <button type="submit" class="btn btn--gold">Submit Request</button>
+        </div>
+      </div>
+    </form>
+    <div id="prayer-thanks" style="display:none; max-width:680px; margin:0 auto; padding:3rem; text-align:center; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08);">
+      <h3 style="color:var(--white); margin-bottom:0.75rem;">We're praying with you.</h3>
+      <p style="color:rgba(255,255,255,0.55);">Your request has been received. Our pastoral team will be lifting you up in prayer. May God meet you with His grace and peace.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Verse ── -->
+<section class="verse-banner">
+  <blockquote>
+    "Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God."
+  </blockquote>
+  <div class="gold-divider"></div>
+  <cite>Philippians 4:6</cite>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="shared.js"></script>
+</body>
+</html>
