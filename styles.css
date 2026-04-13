@@ -16,7 +16,7 @@
   --charcoal:  #1E2533;
   --muted:     #6B7A92;
   --white:     #FFFFFF;
-  --section-pad: 6rem 0;
+  --section-pad: 4rem 0;
   --max-w: 1140px;
 }
 
@@ -139,9 +139,10 @@ p { font-size: 1rem; color: var(--muted); }
 .nav__toggle span { display: block; width: 24px; height: 1.5px; background: var(--white); transition: transform 0.3s, opacity 0.3s; }
 
 .hero {
-  min-height: 100vh; display: flex; align-items: center;
+  padding: calc(72px + 3.5rem) 0 4rem;
+  display: flex; align-items: center;
   position: relative; overflow: hidden;
-  background: var(--blue); padding-top: 72px;
+  background: var(--blue);
 }
 .hero__bg {
   position: absolute; inset: 0;
@@ -175,7 +176,8 @@ p { font-size: 1rem; color: var(--muted); }
 .hero__btns { display: flex; gap: 1rem; flex-wrap: wrap; }
 
 .page-hero {
-  background: var(--blue); padding: 10rem 0 5rem;
+  background: var(--blue); padding: 7rem 0 3.5rem;
+  padding-top: calc(72px + 2.5rem);
   position: relative; overflow: hidden;
 }
 .page-hero::before {
@@ -205,7 +207,7 @@ p { font-size: 1rem; color: var(--muted); }
   background: var(--white); border: 1px solid rgba(54,65,87,0.08);
   padding: 2.5rem; transition: transform 0.25s, box-shadow 0.25s; border-radius: 3px;
 }
-.card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(54,65,87,0.1); }
+.card:hover { box-shadow: 0 4px 16px rgba(54,65,87,0.1); }
 .card__icon { width: 44px; height: 44px; margin-bottom: 1.5rem; color: var(--blue-lt); }
 .card h3 { margin-bottom: 0.75rem; color: var(--blue); }
 .card p { font-size: 0.95rem; }
@@ -235,7 +237,7 @@ p { font-size: 1rem; color: var(--muted); }
 .split__text p { margin-bottom: 1.5rem; }
 
 .verse-banner {
-  padding: 5rem 2rem; text-align: center; background: var(--blue);
+  padding: 3.5rem 2rem; text-align: center; background: var(--blue);
   position: relative; overflow: hidden;
 }
 .verse-banner::before {
@@ -366,11 +368,7 @@ p { font-size: 1rem; color: var(--muted); }
 .footer__bottom { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
 .footer__bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.28); }
 
-@keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
-.fade-up { animation: fadeUp 0.7s ease both; }
-.fade-up--2 { animation-delay: 0.15s; }
-.fade-up--3 { animation-delay: 0.3s; }
-.fade-up--4 { animation-delay: 0.45s; }
+/* animations removed for a simpler, calmer presentation */
 
 @media (max-width: 900px) {
   .split { grid-template-columns: 1fr; gap: 3rem; }
