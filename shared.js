@@ -2,7 +2,7 @@
 const NAV_HTML = `
 <nav class="nav" id="nav">
   <a href="index.html" class="nav__logo">
-    <span class="nav__logo-main">Hope Church</span>
+    <img src="resources/logos/logo.png" alt="Hope Church" class="nav__logo-img">
     <span class="nav__logo-sub">Madison, Alabama</span>
   </a>
   <ul class="nav__links" id="navLinks">
@@ -32,10 +32,10 @@ const FOOTER_HTML = `
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
-        <div class="nav__logo">
-          <span class="nav__logo-main">Hope Church</span>
+        <a href="index.html" class="nav__logo">
+          <img src="resources/logos/logo.png" alt="Hope Church" class="nav__logo-img nav__logo-img--footer">
           <span class="nav__logo-sub">Madison, Alabama</span>
-        </div>
+        </a>
         <p>Passionately pursuing Christ and fearlessly on mission — in Madison and beyond.</p>
       </div>
       <div class="footer__col">

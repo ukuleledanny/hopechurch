@@ -96,11 +96,18 @@ p { font-size: 1rem; color: var(--muted); }
   border-bottom: 1px solid rgba(124, 157, 209, 0.25);
   transition: background 0.3s;
 }
-.nav__logo { display: flex; flex-direction: column; gap: 2px; }
-.nav__logo-main {
-  font-family: 'Raleway', sans-serif;
-  font-size: 1.35rem; font-weight: 800;
-  color: var(--white); letter-spacing: 0.04em;
+.nav__logo { display: flex; flex-direction: column; gap: 4px; }
+.nav__logo-img {
+  height: 26px;
+  width: auto;
+  display: block;
+  background: var(--white);
+  padding: 3px 8px;
+  border-radius: 3px;
+}
+.nav__logo-img--footer {
+  height: 30px;
+  padding: 4px 10px;
 }
 .nav__logo-sub {
   font-family: 'Inter', sans-serif;
