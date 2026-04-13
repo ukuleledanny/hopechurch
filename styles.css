@@ -138,6 +138,41 @@ p { font-size: 1rem; color: var(--muted); }
 .nav__toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
 .nav__toggle span { display: block; width: 24px; height: 1.5px; background: var(--white); transition: transform 0.3s, opacity 0.3s; }
 
+/* ── Nav Dropdown ── */
+.has-dropdown { position: relative; }
+.dropdown-arrow { font-size: 0.55em; margin-left: 3px; opacity: 0.7; }
+.nav__dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 12px);
+  left: -1.25rem;
+  background: var(--blue);
+  border: 1px solid rgba(124,157,209,0.2);
+  border-top: 2px solid var(--blue-lt);
+  min-width: 190px;
+  list-style: none;
+  flex-direction: column;
+  padding: 0.4rem 0;
+  z-index: 200;
+  box-shadow: 0 8px 24px rgba(30,37,51,0.3);
+}
+.has-dropdown:hover .nav__dropdown { display: flex; }
+.nav__dropdown li a {
+  display: block;
+  padding: 0.6rem 1.25rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.67rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.nav__dropdown li a:hover,
+.nav__dropdown li a.active { color: var(--white); background: rgba(124,157,209,0.12); }
+.nav__dropdown li a::after { display: none !important; }
+
 .hero {
   padding: calc(72px + 3.5rem) 0 4rem;
   display: flex; align-items: center;
@@ -385,6 +420,15 @@ p { font-size: 1rem; color: var(--muted); }
     top: 72px; left: 0; right: 0; background: var(--blue);
     padding: 2rem; gap: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08);
   }
+  /* Mobile dropdown: show sub-items inline */
+  .nav.open .has-dropdown .nav__dropdown {
+    display: flex; position: static;
+    border: none; border-left: 2px solid var(--blue-lt);
+    box-shadow: none; padding: 0.25rem 0 0 1rem;
+    margin-top: 0.5rem; background: transparent;
+  }
+  .nav.open .nav__dropdown li a { padding: 0.4rem 0; font-size: 0.65rem; }
+  .dropdown-arrow { display: none; }
   .quick-links { grid-template-columns: 1fr 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .footer__grid { grid-template-columns: 1fr; }

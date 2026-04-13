@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Staff · Hope Church Madison</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Pastor cards (larger, with blurb) ── */
+    .pastor-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2.5rem;
+    }
+    .pastor-card {
+      background: var(--white);
+      border: 1px solid rgba(54,65,87,0.08);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    .pastor-card__photo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: 0 auto 1.5rem;
+      overflow: hidden;
+      border: 3px solid var(--warm-lt);
+      transition: border-color 0.25s;
+    }
+    .pastor-card:hover .pastor-card__photo { border-color: var(--blue-lt); }
+    .pastor-card__photo img { width: 100%; height: 100%; object-fit: cover; }
+    .pastor-card h3 { font-size: 1.35rem; margin-bottom: 0.2rem; color: var(--blue); }
+    .pastor-card__role {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--blue-lt); margin-bottom: 1.25rem;
+    }
+    .pastor-card__bio {
+      font-size: 0.93rem;
+      color: var(--muted);
+      line-height: 1.7;
+      text-align: left;
+    }
+
+    /* ── Elder / Deacon grids ── */
+    .elder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+    .elder-card {
+      text-align: center;
+      padding: 1.5rem 1rem;
+    }
+    .elder-card__photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 1rem;
+      overflow: hidden;
+      border: 2px solid var(--warm-lt);
+      transition: border-color 0.25s;
+    }
+    .elder-card:hover .elder-card__photo { border-color: var(--blue-lt); }
+    .elder-card__photo img { width: 100%; height: 100%; object-fit: cover; }
+    .elder-card h4 { font-size: 1rem; margin-bottom: 0.2rem; color: var(--blue); }
+    .elder-card__role {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.16em; text-transform: uppercase;
+      color: var(--blue-lt);
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(54,65,87,0.1);
+    }
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- ── Page Hero ── -->
+<section class="page-hero">
+  <div class="container" style="position:relative; z-index:2;">
+    <span class="eyebrow">Leadership</span>
+    <h1>Our Staff</h1>
+    <p>Our elders and deacons are servant-leaders committed to the health of this church and the well-being of every person in it.</p>
+  </div>
+</section>
+
+<!-- ── Pastors ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">
+      <span class="eyebrow" style="margin-bottom:0;">Pastors</span>
+    </div>
+
+    <div class="pastor-grid">
+
+      <!-- Mason Phillips -->
+      <div class="pastor-card">
+        <div class="pastor-card__photo">
+          <img src="resources/placeholder.png" alt="Mason Phillips" />
+        </div>
+        <h3>Mason Phillips</h3>
+        <div class="pastor-card__role">Associate Pastor</div>
+        <p class="pastor-card__bio">
+          Mason serves Hope Church with a pastor's heart, investing deeply in the lives of families and young adults. His commitment to Scripture and care for people make him a trusted shepherd in our congregation.
+        </p>
+      </div>
+
+      <!-- Andy Wulff -->
+      <div class="pastor-card">
+        <div class="pastor-card__photo">
+          <img src="resources/placeholder.png" alt="Andy Wulff" />
+        </div>
+        <h3>Andy Wulff</h3>
+        <div class="pastor-card__role">Lead Pastor</div>
+        <p class="pastor-card__bio">
+          Andy brings deep theological insight and a pastor's heart to his preaching, helping the church grow in love for Scripture. He has faithfully served Hope Church for many years, leading with humility and conviction.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Elders ── -->
+<section class="section section--warm">
+  <div class="container">
+    <div class="section-label">
+      <span class="eyebrow" style="margin-bottom:0;">Elders</span>
+    </div>
+    <p style="max-width:600px; margin-bottom:0;">Our plurality of elders provides wise, caring oversight — meeting regularly to pray for and shepherd our congregation.</p>
+
+    <div class="elder-grid">
+
+      <!-- Mickey Counter -->
+      <div class="elder-card">
+        <div class="elder-card__photo">
+          <img src="resources/placeholder.png" alt="Mickey Counter" />
+        </div>
+        <h4>Mickey Counter</h4>
+        <div class="elder-card__role">Elder</div>
+      </div>
+
+      <!-- Sean English -->
+      <div class="elder-card">
+        <div class="elder-card__photo">
+          <img src="resources/placeholder.png" alt="Sean English" />
+        </div>
+        <h4>Sean English</h4>
+        <div class="elder-card__role">Elder</div>
+      </div>
+
+      <!-- Jim Maynard -->
+      <div class="elder-card">
+        <div class="elder-card__photo">
+          <img src="resources/placeholder.png" alt="Jim Maynard" />
+        </div>
+        <h4>Jim Maynard</h4>
+        <div class="elder-card__role">Elder</div>
+      </div>
+
+      <!-- Troy Moyers -->
+      <div class="elder-card">
+        <div class="elder-card__photo">
+          <img src="resources/placeholder.png" alt="Troy Moyers" />
+        </div>
+        <h4>Troy Moyers</h4>
+        <div class="elder-card__role">Elder</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Deacons ── -->
+<section class="section">
+  <div class="container">
+    <div class="section-label">
+      <span class="eyebrow" style="margin-bottom:0;">Deacons</span>
+    </div>
+    <p style="max-width:600px; margin-bottom:0;">Our deacons serve the practical and spiritual needs of the congregation with faithfulness and care.</p>
+
+    <div class="elder-grid">
+
+      <!-- Daniel Bishop -->
+      <div class="elder-card">
+        <div class="elder-card__photo">
+          <img src="resources/placeholder.png" alt="Daniel Bishop" />
+        </div>
+        <h4>Daniel Bishop</h4>
+        <div class="elder-card__role">Deacon</div>
+      </div>
+
+      <!-- George Breugger -->
+      <div class="elder-card">
+        <div class="elder-card__photo">
+          <img src="resources/placeholder.png" alt="George Breugger" />
+        </div>
+        <h4>George Breugger</h4>
+        <div class="elder-card__role">Deacon</div>
+      </div>
+
+      <!-- Gary Mathis -->
+      <div class="elder-card">
+        <div class="elder-card__photo">
+          <img src="resources/placeholder.png" alt="Gary Mathis" />
+        </div>
+        <h4>Gary Mathis</h4>
+        <div class="elder-card__role">Deacon</div>
+      </div>
+
+      <!-- Barry Petry -->
+      <div class="elder-card">
+        <div class="elder-card__photo">
+          <img src="resources/placeholder.png" alt="Barry Petry" />
+        </div>
+        <h4>Barry Petry</h4>
+        <div class="elder-card__role">Deacon</div>
+      </div>
+
+      <!-- Tom Stoltz -->
+      <div class="elder-card">
+        <div class="elder-card__photo">
+          <img src="resources/placeholder.png" alt="Tom Stoltz" />
+        </div>
+        <h4>Tom Stoltz</h4>
+        <div class="elder-card__role">Deacon</div>
+      </div>
+
+      <!-- Daniel Wilson -->
+      <div class="elder-card">
+        <div class="elder-card__photo">
+          <img src="resources/placeholder.png" alt="Daniel Wilson" />
+        </div>
+        <h4>Daniel Wilson</h4>
+        <div class="elder-card__role">Deacon</div>
+      </div>
+
+      <!-- Steve Wright -->
+      <div class="elder-card">
+        <div class="elder-card__photo">
+          <img src="resources/placeholder.png" alt="Steve Wright" />
+        </div>
+        <h4>Steve Wright</h4>
+        <div class="elder-card__role">Deacon</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact CTA ── -->
+<section class="section section--dark">
+  <div class="container text-center">
+    <h2 style="color:var(--white);">Want to connect with our leadership?</h2>
+    <div class="gold-divider"></div>
+    <p style="max-width:460px; margin:0 auto 2rem;">Reach out any time. Our pastors and elders are here to serve you.</p>
+    <a href="contact.html" class="btn btn--gold">Get in Touch</a>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="shared.js"></script>
+</body>
+</html>

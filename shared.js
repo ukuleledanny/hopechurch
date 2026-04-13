@@ -7,9 +7,16 @@ const NAV_HTML = `
   </a>
   <ul class="nav__links" id="navLinks">
     <li><a href="index.html">Home</a></li>
-    <li><a href="about.html">About</a></li>
+    <li class="has-dropdown">
+      <a href="about.html">About <span class="dropdown-arrow">▾</span></a>
+      <ul class="nav__dropdown">
+        <li><a href="about.html">About Hope</a></li>
+        <li><a href="beliefs.html">What We Believe</a></li>
+        <li><a href="staff.html">Our Staff</a></li>
+        <li><a href="events.html">News &amp; Events</a></li>
+      </ul>
+    </li>
     <li><a href="sermons.html">Sermons</a></li>
-    <li><a href="events.html">Events</a></li>
     <li><a href="ministries.html">Ministries</a></li>
     <li><a href="contact.html">Contact</a></li>
   </ul>
@@ -75,6 +82,16 @@ document.getElementById('footer-placeholder').innerHTML = FOOTER_HTML;
 
 // Highlight active nav link
 const page = window.location.pathname.split('/').pop() || 'index.html';
+const aboutPages = ['about.html', 'beliefs.html', 'staff.html', 'events.html'];
 document.querySelectorAll('.nav__links a').forEach(link => {
+  if (link.getAttribute('href') === page) link.classList.add('active');
+});
+// Mark the About parent as active when on any About sub-page
+if (aboutPages.includes(page)) {
+  const aboutParent = document.querySelector('.has-dropdown > a');
+  if (aboutParent) aboutParent.classList.add('active');
+}
+// Mark the matching dropdown item as active
+document.querySelectorAll('.nav__dropdown a').forEach(link => {
   if (link.getAttribute('href') === page) link.classList.add('active');
 });
