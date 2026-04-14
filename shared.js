@@ -52,9 +52,9 @@ const FOOTER_HTML = `
       <div class="footer__col">
         <h5>Visit</h5>
         <ul>
-          <li><a href="#">1661 Balch Rd</a></li>
-          <li><a href="#">Madison, AL 35757</a></li>
-          <li><a href="#">Sunday 10:00 a.m.</a></li>
+          <li><span>1661 Balch Rd</span></li>
+          <li><span>Madison, AL 35757</span></li>
+          <li><span>Sunday 10:00 a.m.</span></li>
           <li><a href="tel:2568305544">(256) 830-5544</a></li>
         </ul>
       </div>
