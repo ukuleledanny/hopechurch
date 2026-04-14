@@ -12,7 +12,7 @@
 
 <!-- ── Hero ── -->
 <section class="hero">
-  <div class="container">
+  <div class="container hero__split">
     <div class="hero__content">
       <span class="eyebrow">Welcome to Hope Church</span>
       <h1>You are<br><em>welcome here.</em></h1>
@@ -25,14 +25,25 @@
         <a href="contact.html" class="btn btn--gold">Plan Your Visit</a>
       </div>
     </div>
+    <div class="hero__carousel-wrap">
+      <div class="carousel" id="heroCarousel">
+        <div class="carousel__track" id="carouselTrack">
+          <!-- Replace these src values with your own photos -->
+          <div class="carousel__slide"><img src="resources/placeholder.png" alt="Hope Church community" /></div>
+          <div class="carousel__slide"><img src="resources/placeholder.png" alt="Sunday worship" /></div>
+          <div class="carousel__slide"><img src="resources/placeholder.png" alt="Community life" /></div>
+        </div>
+        <button class="carousel__btn carousel__btn--prev" aria-label="Previous slide">&#8249;</button>
+        <button class="carousel__btn carousel__btn--next" aria-label="Next slide">&#8250;</button>
+        <div class="carousel__dots" id="carouselDots">
+          <span class="carousel__dot active"></span>
+          <span class="carousel__dot"></span>
+          <span class="carousel__dot"></span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
-
-<!-- ── Welcome Strip ── -->
-<div class="welcome-strip">
-  <p>New to Hope? We'd love to meet you.</p>
-  <a href="contact.html">Fill out a connection card →</a>
-</div>
 
 <!-- ── Quick Links ── -->
 <div class="quick-links">
@@ -101,46 +112,29 @@
   </div>
 </section>
 
-<!-- ── Latest Sermons Preview ── -->
-<section class="section section--dark">
-  <div class="container">
-    <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:1rem;">
-      <div>
-        <span class="eyebrow">From the Pulpit</span>
-        <h2 style="color:var(--white);">Recent Sermons</h2>
-      </div>
-      <a href="sermons.html" class="btn btn--gold">All Sermons</a>
-    </div>
-    <div class="sermon-list">
-      <div class="sermon-item" style="border-color:rgba(255,255,255,0.08)">
-        <div>
-          <div class="sermon-item__series">Revelation · Part 7</div>
-          <h3 style="color:var(--white);">A Letter from God</h3>
-          <div class="sermon-item__meta" style="color:rgba(255,255,255,0.4)">Pastor Mickey Counter · June 23, 2023</div>
-        </div>
-        <a href="sermons.html" class="btn btn--white" style="white-space:nowrap; font-size:0.65rem;">Listen</a>
-      </div>
-      <div class="sermon-item" style="border-color:rgba(255,255,255,0.08)">
-        <div>
-          <div class="sermon-item__series">Revelation · Part 6</div>
-          <h3 style="color:var(--white);">Blessings and Hope for Today</h3>
-          <div class="sermon-item__meta" style="color:rgba(255,255,255,0.4)">Pastor Andy Wulff · June 16, 2023</div>
-        </div>
-        <a href="sermons.html" class="btn btn--white" style="white-space:nowrap; font-size:0.65rem;">Listen</a>
-      </div>
-      <div class="sermon-item" style="border-color:rgba(255,255,255,0.08)">
-        <div>
-          <div class="sermon-item__series">Ephesians · Part 12</div>
-          <h3 style="color:var(--white);">The Crucial Role of a Supply Line</h3>
-          <div class="sermon-item__meta" style="color:rgba(255,255,255,0.4)">Pastor Andy Wulff · June 9, 2023</div>
-        </div>
-        <a href="sermons.html" class="btn btn--white" style="white-space:nowrap; font-size:0.65rem;">Listen</a>
-      </div>
-    </div>
-  </div>
-</section>
-
 <div id="footer-placeholder"></div>
 <script src="shared.js"></script>
+<script>
+(function () {
+  var track = document.getElementById('carouselTrack');
+  if (!track) return;
+  var slides = track.querySelectorAll('.carousel__slide');
+  var dots = document.querySelectorAll('#carouselDots .carousel__dot');
+  var current = 0;
+  var total = slides.length;
+
+  function goTo(n) {
+    current = (n + total) % total;
+    track.style.transform = 'translateX(-' + (current * 100) + '%)';
+    dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+  }
+
+  document.querySelector('.carousel__btn--prev').addEventListener('click', function () { goTo(current - 1); });
+  document.querySelector('.carousel__btn--next').addEventListener('click', function () { goTo(current + 1); });
+  dots.forEach(function (dot, i) { dot.addEventListener('click', function () { goTo(i); }); });
+
+  setInterval(function () { goTo(current + 1); }, 5000);
+}());
+</script>
 </body>
 </html>

@@ -200,7 +200,78 @@ p { font-size: 1rem; color: var(--muted); }
   color: var(--white); line-height: 1;
   user-select: none; pointer-events: none;
 }
-.hero__content { position: relative; z-index: 2; max-width: 700px; }
+.hero__split {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem;
+  align-items: center;
+}
+.hero__content { position: relative; z-index: 2; }
+.hero__carousel-wrap { position: relative; z-index: 2; }
+
+/* ── Image Carousel ── */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  aspect-ratio: 16 / 10;
+  background: var(--blue-mid);
+}
+.carousel__track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.carousel__slide {
+  min-width: 100%;
+  height: 100%;
+}
+.carousel__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.45);
+  border: none;
+  color: var(--white);
+  font-size: 2rem;
+  line-height: 1;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  border-radius: 2px;
+  z-index: 10;
+}
+.carousel__btn:hover { background: rgba(0, 0, 0, 0.72); }
+.carousel__btn--prev { left: 0.75rem; }
+.carousel__btn--next { right: 0.75rem; }
+.carousel__dots {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.45rem;
+  z-index: 10;
+}
+.carousel__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.carousel__dot.active { background: var(--white); }
 .hero h1 { color: var(--white); margin-bottom: 1.5rem; }
 .hero h1 em { font-style: italic; font-weight: 300; color: var(--blue-lt); }
 .hero__sub { font-size: 1.05rem; color: rgba(255,255,255,0.65); margin-bottom: 2.5rem; max-width: 500px; }
@@ -419,6 +490,7 @@ p { font-size: 1rem; color: var(--muted); }
   .quick-links { grid-template-columns: repeat(2, 1fr); }
   .footer__grid { grid-template-columns: 1fr 1fr; }
   .info-boxes { grid-template-columns: 1fr; }
+  .hero__split { grid-template-columns: 1fr; gap: 2.5rem; }
 }
 @media (max-width: 700px) {
   .nav__links, .nav__cta { display: none; }
