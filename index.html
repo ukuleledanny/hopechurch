@@ -12,7 +12,28 @@
 
 <!-- ── Hero ── -->
 <section class="hero">
-  <div class="container hero__split">
+  <!-- Full-bleed carousel sits behind everything -->
+  <div class="hero__carousel-bg">
+    <div class="carousel" id="heroCarousel">
+      <div class="carousel__track" id="carouselTrack">
+        <!-- Replace these src values with your own photos -->
+        <div class="carousel__slide"><img src="resources/placeholder.png" alt="Hope Church community" /></div>
+        <div class="carousel__slide"><img src="resources/placeholder.png" alt="Sunday worship" /></div>
+        <div class="carousel__slide"><img src="resources/placeholder.png" alt="Community life" /></div>
+      </div>
+      <button class="carousel__btn carousel__btn--prev" aria-label="Previous slide">&#8249;</button>
+      <button class="carousel__btn carousel__btn--next" aria-label="Next slide">&#8250;</button>
+      <div class="carousel__dots" id="carouselDots">
+        <span class="carousel__dot active"></span>
+        <span class="carousel__dot"></span>
+        <span class="carousel__dot"></span>
+      </div>
+    </div>
+  </div>
+  <!-- Gradient fade: dark on left where text lives, transparent on right -->
+  <div class="hero__overlay"></div>
+  <!-- Text content overlaid on top -->
+  <div class="container">
     <div class="hero__content">
       <span class="eyebrow">Welcome to Hope Church</span>
       <h1>You are<br><em>welcome here.</em></h1>
@@ -23,23 +44,6 @@
       <div class="hero__btns">
         <a href="about.html" class="btn btn--white">Learn About Us</a>
         <a href="contact.html" class="btn btn--gold">Plan Your Visit</a>
-      </div>
-    </div>
-    <div class="hero__carousel-wrap">
-      <div class="carousel" id="heroCarousel">
-        <div class="carousel__track" id="carouselTrack">
-          <!-- Replace these src values with your own photos -->
-          <div class="carousel__slide"><img src="resources/placeholder.png" alt="Hope Church community" /></div>
-          <div class="carousel__slide"><img src="resources/placeholder.png" alt="Sunday worship" /></div>
-          <div class="carousel__slide"><img src="resources/placeholder.png" alt="Community life" /></div>
-        </div>
-        <button class="carousel__btn carousel__btn--prev" aria-label="Previous slide">&#8249;</button>
-        <button class="carousel__btn carousel__btn--next" aria-label="Next slide">&#8250;</button>
-        <div class="carousel__dots" id="carouselDots">
-          <span class="carousel__dot active"></span>
-          <span class="carousel__dot"></span>
-          <span class="carousel__dot"></span>
-        </div>
       </div>
     </div>
   </div>
