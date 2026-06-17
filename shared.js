@@ -61,8 +61,8 @@ const FOOTER_HTML = `
       <div class="footer__col">
         <h5>Connect</h5>
         <ul>
-          <li><a href="#">Facebook</a></li>
-          <li><a href="#">YouTube</a></li>
+          <li><a href="https://www.facebook.com/HopeInMadison" target="_blank" rel="noopener">Facebook</a></li>
+          <li><a href="https://www.youtube.com/user/hopechurchmadisonal" target="_blank" rel="noopener">YouTube</a></li>
           <li><a href="contact.html">Prayer Request</a></li>
           <li><a href="contact.html">Give Online</a></li>
         </ul>
@@ -70,7 +70,6 @@ const FOOTER_HTML = `
     </div>
     <div class="footer__bottom">
       <p>© 2025 Hope Church · Madison, Alabama. All rights reserved.</p>
-      <p>Made with faith &amp; care.</p>
     </div>
   </div>
 </footer>

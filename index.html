@@ -16,13 +16,10 @@
   <div class="hero__carousel-bg">
     <div class="carousel" id="heroCarousel">
       <div class="carousel__track" id="carouselTrack">
-        <!-- Replace these src values with your own photos -->
-        <div class="carousel__slide"><img src="resources/placeholder.png" alt="Hope Church community" /></div>
-        <div class="carousel__slide"><img src="resources/placeholder.png" alt="Sunday worship" /></div>
-        <div class="carousel__slide"><img src="resources/placeholder.png" alt="Community life" /></div>
+        <div class="carousel__slide"><img src="resources/heroes/hero_1.png" alt="Hope Church community" /></div>
+        <div class="carousel__slide"><img src="resources/heroes/hero_2.png" alt="Sunday worship" /></div>
+        <div class="carousel__slide"><img src="resources/heroes/hero_3.png" alt="Community life" /></div>
       </div>
-      <button class="carousel__btn carousel__btn--prev" aria-label="Previous slide">&#8249;</button>
-      <button class="carousel__btn carousel__btn--next" aria-label="Next slide">&#8250;</button>
       <div class="carousel__dots" id="carouselDots">
         <span class="carousel__dot active"></span>
         <span class="carousel__dot"></span>
@@ -33,17 +30,22 @@
   <!-- Gradient fade: dark on left where text lives, transparent on right -->
   <div class="hero__overlay"></div>
   <!-- Text content overlaid on top -->
-  <div class="container">
+  <div style="width:100%; padding-left: clamp(2rem, 6vw, 7rem); position:relative; z-index:2;">
     <div class="hero__content">
-      <span class="eyebrow">Welcome to Hope Church</span>
-      <h1>You are<br><em>welcome here.</em></h1>
+      <h1>Welcome to<br><em>Hope Church</em></h1>
       <p class="hero__sub">
-        We desire to multiply people who are passionately pursuing Christ and fearlessly on mission. 
+        We desire to multiply people who are passionately pursuing Christ and fearlessly on mission.
         Join us this Sunday at 10am.
       </p>
     </div>
   </div>
 </section>
+
+<!-- ── Welcome Strip ── -->
+<div class="welcome-strip">
+  <p>Sunday Worship &nbsp;·&nbsp; 10:00 a.m. &nbsp;·&nbsp; 1661 Balch Rd, Madison, AL</p>
+  <a href="contact.html">Plan Your Visit &rarr;</a>
+</div>
 
 <!-- ── Quick Links ── -->
 <div class="quick-links">
@@ -78,6 +80,12 @@
   </a>
 </div>
 
+<!-- ── Scripture Verse ── -->
+<div class="verse-banner">
+  <blockquote>"For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future."</blockquote>
+  <cite>Jeremiah 29:11</cite>
+</div>
+
 <!-- ── Cards: What to Expect ── -->
 <section class="section section--warm">
   <div class="container text-center">
@@ -110,22 +118,24 @@
 (function () {
   var track = document.getElementById('carouselTrack');
   if (!track) return;
-  var slides = track.querySelectorAll('.carousel__slide');
-  var dots = document.querySelectorAll('#carouselDots .carousel__dot');
+  var slides = Array.prototype.slice.call(track.querySelectorAll('.carousel__slide'));
+  var dots = Array.prototype.slice.call(document.querySelectorAll('#carouselDots .carousel__dot'));
   var current = 0;
   var total = slides.length;
 
+  slides[0].classList.add('active');
+
   function goTo(n) {
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
     current = (n + total) % total;
-    track.style.transform = 'translateX(-' + (current * 100) + '%)';
-    dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
   }
 
-  document.querySelector('.carousel__btn--prev').addEventListener('click', function () { goTo(current - 1); });
-  document.querySelector('.carousel__btn--next').addEventListener('click', function () { goTo(current + 1); });
   dots.forEach(function (dot, i) { dot.addEventListener('click', function () { goTo(i); }); });
 
-  setInterval(function () { goTo(current + 1); }, 5000);
+  setInterval(function () { goTo(current + 1); }, 10000);
 }());
 </script>
 </body>

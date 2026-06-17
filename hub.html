@@ -9,8 +9,8 @@
   <style>
     :root {
       --navy:    #1B2B4B;
-      --gold:    #B8975A;
-      --gold-lt: #D4B47C;
+      --accent:  #7C9DD1;
+      --accent-lt: #B3C6DA;
       --cream:   #F7F4EE;
       --warm:    #EDE9E0;
       --white:   #FFFFFF;
@@ -57,7 +57,7 @@
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--accent);
     }
     .hub-tabs {
       display: flex;
@@ -79,7 +79,7 @@
       transition: all 0.2s;
     }
     .hub-tab:last-child { border-right: none; }
-    .hub-tab.active { background: var(--gold); color: var(--white); }
+    .hub-tab.active { background: var(--accent); color: var(--white); }
     .hub-tab:hover:not(.active) { color: var(--white); background: rgba(255,255,255,0.06); }
 
     .hub-body {
@@ -120,7 +120,7 @@
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--accent);
       margin-bottom: 1rem;
       display: block;
     }
@@ -288,7 +288,7 @@
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--accent);
       margin-bottom: 0.5rem;
     }
     .web-preview h2 {
@@ -314,18 +314,18 @@
       align-items: center;
       background: var(--white);
       padding: 0.75rem 1rem;
-      border-left: 3px solid var(--gold);
+      border-left: 3px solid var(--accent);
     }
     .web-event-date-mini {
       text-align: center;
     }
-    .web-event-date-mini .mo { font-size: 0.55rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); display: block; }
+    .web-event-date-mini .mo { font-size: 0.55rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); display: block; }
     .web-event-date-mini .dy { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 500; color: var(--navy); line-height: 1; display: block; }
     .web-event-name { font-size: 0.88rem; font-weight: 500; color: var(--charcoal); }
     .web-event-time { font-size: 0.78rem; color: var(--muted); }
     .web-prayer { background: var(--navy); padding: 1.25rem 1.5rem; margin-top: 0.5rem; }
     .web-prayer p { font-size: 0.88rem; color: rgba(255,255,255,0.7); }
-    .web-prayer strong { color: var(--gold-lt); font-weight: 500; }
+    .web-prayer strong { color: var(--accent-lt); font-weight: 500; }
 
     /* ────────────────────────
        EMAIL PREVIEW
@@ -354,14 +354,14 @@
       margin-bottom: 4px;
     }
     .email-header p {
-      color: #B8975A;
+      color: #7C9DD1;
       font-size: 11px;
       letter-spacing: 2px;
       text-transform: uppercase;
       font-family: Arial, sans-serif;
       margin: 0;
     }
-    .email-gold-bar { height: 3px; background: #B8975A; }
+    .email-accent-bar { height: 3px; background: #7C9DD1; }
     .email-body { padding: 32px; }
     .email-greeting { font-size: 15px; color: #2A2A2A; margin-bottom: 16px; line-height: 1.7; }
     .email-summary { font-size: 15px; color: #555; margin-bottom: 24px; line-height: 1.7; }
@@ -371,14 +371,14 @@
       font-weight: bold;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: #B8975A;
+      color: #7C9DD1;
       border-bottom: 1px solid #e0dbd0;
       padding-bottom: 6px;
       margin-bottom: 14px;
     }
     .email-verse-box {
       background: #F7F4EE;
-      border-left: 3px solid #B8975A;
+      border-left: 3px solid #7C9DD1;
       padding: 14px 18px;
       margin-bottom: 24px;
     }
@@ -392,7 +392,7 @@
     .email-verse-box cite {
       font-family: Arial, sans-serif;
       font-size: 11px;
-      color: #B8975A;
+      color: #7C9DD1;
       font-style: normal;
     }
     .email-event-row {
@@ -415,7 +415,7 @@
       justify-content: center;
       flex-shrink: 0;
     }
-    .email-event-cal .mo { font-family: Arial, sans-serif; font-size: 9px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #B8975A; }
+    .email-event-cal .mo { font-family: Arial, sans-serif; font-size: 9px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; color: #7C9DD1; }
     .email-event-cal .dy { font-family: Georgia, serif; font-size: 18px; color: #fff; line-height: 1; }
     .email-event-title { font-size: 14px; font-weight: bold; color: #1B2B4B; margin-bottom: 2px; }
     .email-event-meta  { font-family: Arial, sans-serif; font-size: 12px; color: #888; }
@@ -424,7 +424,7 @@
       padding: 20px 24px;
       margin: 24px 0;
     }
-    .email-prayer-label { font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #B8975A; margin-bottom: 8px; }
+    .email-prayer-label { font-family: Arial, sans-serif; font-size: 10px; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #7C9DD1; margin-bottom: 8px; }
     .email-prayer-box p { font-family: Arial, sans-serif; font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.6; }
     .email-image-placeholder {
       width: 100%;
@@ -467,7 +467,7 @@
       text-align: center;
     }
     .email-footer p { font-family: Arial, sans-serif; font-size: 11px; color: rgba(255,255,255,0.35); line-height: 1.6; margin: 0; }
-    .email-footer a { color: #B8975A; text-decoration: none; }
+    .email-footer a { color: #7C9DD1; text-decoration: none; }
 
     /* ────────────────────────
        PAMPHLET PREVIEW
@@ -506,7 +506,7 @@
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--accent);
       margin-bottom: 1.25rem;
     }
     .pam-divider { width: 32px; height: 1px; background: rgba(255,255,255,0.2); margin-bottom: 1.25rem; }
@@ -515,7 +515,7 @@
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--accent);
       margin-bottom: 0.4rem;
     }
     .pam-sermon-title {
@@ -552,7 +552,7 @@
       font-weight: 500;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--accent);
       border-bottom: 1px solid rgba(0,0,0,0.08);
       padding-bottom: 0.4rem;
       margin-bottom: 0.5rem;
@@ -567,10 +567,10 @@
     .pam-verse cite { font-family: 'Jost', sans-serif; font-size: 0.65rem; font-style: normal; color: var(--muted); display: block; margin-top: 3px; }
     .pam-event-row { display: flex; gap: 0.6rem; align-items: flex-start; margin-bottom: 0.5rem; }
     .pam-event-row:last-child { margin-bottom: 0; }
-    .pam-event-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 5px; }
+    .pam-event-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; }
     .pam-event-name { font-size: 0.75rem; font-weight: 500; color: var(--charcoal); }
     .pam-event-meta { font-size: 0.68rem; color: var(--muted); }
-    .pam-prayer-label { font-size: 0.55rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+    .pam-prayer-label { font-size: 0.55rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
     .pam-prayer-text { font-size: 0.75rem; color: var(--muted); line-height: 1.55; }
     .pam-notes {
       flex: 1;
@@ -886,7 +886,7 @@ function buildWebHTML(d) {
 ${d.verse ? `<p class="web-verse">"${d.verse}" — ${d.verseref}</p>` : ''}
 ${d.summary ? `<p class="web-summary">${d.summary}</p>` : ''}
 ${d.events.length ? `
-<div style="font-size:0.62rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;">Upcoming Events</div>
+<div style="font-size:0.62rem;font-weight:500;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;">Upcoming Events</div>
 <div class="web-event-list">${eventsHTML}</div>` : ''}
 ${d.prayer ? `
 <div class="web-prayer">
@@ -907,7 +907,7 @@ function buildEmailHTML(d) {
           <table cellpadding="0" cellspacing="0" width="100%"><tr>
             <td style="width:52px;vertical-align:top;">
               <table cellpadding="0" cellspacing="0" style="width:44px;height:44px;background:#1B2B4B;text-align:center;">
-                <tr><td style="padding-top:7px;font-family:Arial,sans-serif;font-size:9px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#B8975A;">${mo}</td></tr>
+                <tr><td style="padding-top:7px;font-family:Arial,sans-serif;font-size:9px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#7C9DD1;">${mo}</td></tr>
                 <tr><td style="font-family:Georgia,serif;font-size:18px;color:#fff;line-height:1;">${dy}</td></tr>
               </table>
             </td>
@@ -940,9 +940,9 @@ function buildEmailHTML(d) {
   <!-- Header -->
   <tr><td style="background:#1B2B4B;padding:28px 32px 22px;text-align:center;">
     <div style="font-family:Georgia,serif;font-size:22px;color:#fff;font-weight:normal;margin-bottom:4px;">Hope Church</div>
-    <div style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#B8975A;">Madison, Alabama</div>
+    <div style="font-family:Arial,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#7C9DD1;">Madison, Alabama</div>
   </td></tr>
-  <tr><td style="height:3px;background:#B8975A;"></td></tr>
+  <tr><td style="height:3px;background:#7C9DD1;"></td></tr>
 
   <!-- Body -->
   <tr><td style="padding:32px;">
@@ -954,7 +954,7 @@ function buildEmailHTML(d) {
     <table cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:24px;">
       <tr>
         <td style="background:#F7F4EE;border-left:3px solid #1B2B4B;padding:14px 18px;">
-          <div style="font-family:Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#B8975A;margin-bottom:4px;">${d.series}</div>
+          <div style="font-family:Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#7C9DD1;margin-bottom:4px;">${d.series}</div>
           <div style="font-size:18px;color:#1B2B4B;font-weight:normal;margin-bottom:3px;">${d.title}</div>
           ${d.scripture ? `<div style="font-family:Arial,sans-serif;font-size:12px;color:#888;">${d.scripture}${d.preacher ? ' · ' + d.preacher : ''}</div>` : ''}
         </td>
@@ -971,15 +971,15 @@ function buildEmailHTML(d) {
     <!-- Verse -->
     ${d.verse ? `
     <table cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:24px;">
-      <tr><td style="background:#F7F4EE;border-left:3px solid #B8975A;padding:14px 18px;">
+      <tr><td style="background:#F7F4EE;border-left:3px solid #7C9DD1;padding:14px 18px;">
         <p style="font-style:italic;font-size:14px;color:#444;line-height:1.6;margin:0 0 4px;">"${d.verse}"</p>
-        <cite style="font-family:Arial,sans-serif;font-size:11px;color:#B8975A;font-style:normal;">${d.verseref}</cite>
+        <cite style="font-family:Arial,sans-serif;font-size:11px;color:#7C9DD1;font-style:normal;">${d.verseref}</cite>
       </td></tr>
     </table>` : ''}
 
     <!-- Events -->
     ${d.events.length ? `
-    <div style="font-family:Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#B8975A;border-bottom:1px solid #e0dbd0;padding-bottom:6px;margin-bottom:14px;">Upcoming Events</div>
+    <div style="font-family:Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#7C9DD1;border-bottom:1px solid #e0dbd0;padding-bottom:6px;margin-bottom:14px;">Upcoming Events</div>
     <table cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:24px;">
       ${eventsRows}
     </table>` : ''}
@@ -988,7 +988,7 @@ function buildEmailHTML(d) {
     ${d.prayer ? `
     <table cellpadding="0" cellspacing="0" width="100%" style="margin-bottom:24px;">
       <tr><td style="background:#1B2B4B;padding:20px 24px;">
-        <div style="font-family:Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#B8975A;margin-bottom:8px;">Prayer Focus</div>
+        <div style="font-family:Arial,sans-serif;font-size:10px;font-weight:bold;letter-spacing:2px;text-transform:uppercase;color:#7C9DD1;margin-bottom:8px;">Prayer Focus</div>
         <p style="font-family:Arial,sans-serif;font-size:13px;color:rgba(255,255,255,0.75);line-height:1.6;margin:0;">${d.prayer}</p>
       </td></tr>
     </table>` : ''}
@@ -1006,8 +1006,8 @@ function buildEmailHTML(d) {
   <tr><td style="background:#111B2E;padding:20px 32px;text-align:center;">
     <p style="font-family:Arial,sans-serif;font-size:11px;color:rgba(255,255,255,0.35);line-height:1.6;margin:0;">
       Hope Church · 1661 Balch Rd, Madison AL 35757 · (256) 830-5544<br/>
-      <a href="*|UNSUB|*" style="color:#B8975A;text-decoration:none;">Unsubscribe</a> · 
-      <a href="*|UPDATE_PROFILE|*" style="color:#B8975A;text-decoration:none;">Update preferences</a>
+      <a href="*|UNSUB|*" style="color:#7C9DD1;text-decoration:none;">Unsubscribe</a> · 
+      <a href="*|UPDATE_PROFILE|*" style="color:#7C9DD1;text-decoration:none;">Update preferences</a>
     </p>
   </td></tr>
 
@@ -1149,7 +1149,7 @@ document.getElementById('printPamphlet').addEventListener('click', () => {
     <title>Hope Church — ${d.date} — Sunday Pamphlet</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
     <style>
-      :root{--navy:#1B2B4B;--gold:#B8975A;--gold-lt:#D4B47C;--cream:#F7F4EE;--warm:#EDE9E0;--white:#fff;--muted:#7A7A7A;--charcoal:#2A2A2A;}
+      :root{--navy:#1B2B4B;--accent:#7C9DD1;--accent-lt:#B3C6DA;--cream:#F7F4EE;--warm:#EDE9E0;--white:#fff;--muted:#7A7A7A;--charcoal:#2A2A2A;}
       *{box-sizing:border-box;margin:0;padding:0;}
       body{background:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;}
       ${document.querySelector('style').textContent}
