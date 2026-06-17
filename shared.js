@@ -19,6 +19,7 @@ const NAV_HTML = `
     <li><a href="sermons.html">Sermons</a></li>
     <li><a href="ministries.html">Ministries</a></li>
     <li><a href="contact.html">Contact</a></li>
+    <li><a href="https://home.planningcenteronline.com" target="_blank" rel="noopener" class="nav__staff-login">Staff Login</a></li>
   </ul>
   <a href="contact.html" class="nav__cta">Plan a Visit</a>
   <div class="nav__toggle" id="navToggle" onclick="document.getElementById('nav').classList.toggle('open')">

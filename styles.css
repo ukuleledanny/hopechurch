@@ -142,6 +142,19 @@ p { font-size: 1rem; color: var(--muted); }
   transition: background 0.2s, color 0.2s; border-radius: 2px;
 }
 .nav__cta:hover { background: var(--blue-lt); color: var(--white); }
+.nav__staff-login {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.62rem; font-weight: 600;
+  letter-spacing: 0.13em; text-transform: uppercase;
+  padding: 0.35rem 0.85rem;
+  background: #2d7a47;
+  color: #ffffff !important;
+  border-radius: 2px;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.nav__staff-login:hover { background: #235f38 !important; }
+.nav__staff-login::after { display: none !important; }
 .nav__toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
 .nav__toggle span { display: block; width: 24px; height: 1.5px; background: var(--white); transition: transform 0.3s, opacity 0.3s; }
 
