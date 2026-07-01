@@ -18,10 +18,8 @@ const NAV_HTML = `
     </li>
     <li><a href="sermons.html">Sermons</a></li>
     <li><a href="ministries.html">Ministries</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="https://home.planningcenteronline.com" target="_blank" rel="noopener" class="nav__staff-login">Staff Login</a></li>
+    <li><a href="admin.html" class="nav__staff-login">Staff Login</a></li>
   </ul>
-  <a href="contact.html" class="nav__cta">Plan a Visit</a>
   <div class="nav__toggle" id="navToggle" onclick="document.getElementById('nav').classList.toggle('open')">
     <span></span><span></span><span></span>
   </div>
@@ -47,7 +45,6 @@ const FOOTER_HTML = `
           <li><a href="sermons.html">Sermons</a></li>
           <li><a href="events.html">Events</a></li>
           <li><a href="ministries.html">Ministries</a></li>
-          <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
       <div class="footer__col">
@@ -64,8 +61,6 @@ const FOOTER_HTML = `
         <ul>
           <li><a href="https://www.facebook.com/HopeInMadison" target="_blank" rel="noopener">Facebook</a></li>
           <li><a href="https://www.youtube.com/user/hopechurchmadisonal" target="_blank" rel="noopener">YouTube</a></li>
-          <li><a href="contact.html">Prayer Request</a></li>
-          <li><a href="contact.html">Give Online</a></li>
         </ul>
       </div>
     </div>
