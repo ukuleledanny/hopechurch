@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staff Portal · Hope Church</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Reset page chrome for admin ── */
+    body { background: var(--cream); margin: 0; min-height: 100vh; }
+
+    /* ── Login Screen ── */
+    .adm-login {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--charcoal);
+      padding: 2rem;
+    }
+    .adm-login__card {
+      background: var(--white);
+      max-width: 420px; width: 100%;
+      padding: 3rem 2.5rem;
+      text-align: center;
+    }
+    .adm-login__logo {
+      height: 48px; margin-bottom: 2rem;
+    }
+    .adm-login__eyebrow {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.62rem; font-weight: 700;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--blue-mid); margin-bottom: 0.5rem;
+    }
+    .adm-login__card h2 {
+      font-size: 1.6rem; margin-bottom: 0.75rem;
+    }
+    .adm-login__card p {
+      font-size: 0.9rem; margin-bottom: 2rem; max-width: 300px; margin-left: auto; margin-right: auto;
+    }
+    .adm-login__pco-btn {
+      display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+      width: 100%; padding: 0.85rem 1.5rem;
+      background: var(--blue); color: var(--white);
+      font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      border: none; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .adm-login__pco-btn:hover { background: var(--charcoal); }
+    .adm-login__pco-btn svg { flex-shrink: 0; }
+    .adm-login__error {
+      margin-top: 1.25rem;
+      padding: 0.75rem 1rem;
+      background: rgba(200, 60, 60, 0.07);
+      color: #9b2c2c;
+      font-size: 0.85rem; text-align: left;
+      font-family: 'Inter', sans-serif;
+    }
+    .adm-login__note {
+      margin-top: 1.5rem;
+      font-size: 0.78rem; color: var(--muted); opacity: 0.75;
+    }
+
+    /* ── Loading Screen ── */
+    .adm-loading {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: var(--charcoal); gap: 1.25rem;
+    }
+    .adm-loading__spinner {
+      width: 36px; height: 36px;
+      border: 3px solid rgba(124,157,209,0.25);
+      border-top-color: var(--blue-lt);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .adm-loading__msg {
+      font-family: 'Raleway', sans-serif; font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue-lt);
+    }
+
+    /* ── Dashboard Shell ── */
+    .adm-shell {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 100vh;
+    }
+
+    /* Sidebar */
+    .adm-sidebar {
+      background: var(--charcoal);
+      display: flex; flex-direction: column;
+      padding: 0;
+      position: sticky; top: 0; height: 100vh;
+      overflow-y: auto;
+    }
+    .adm-sidebar__brand {
+      padding: 1.75rem 1.5rem 1.5rem;
+      border-bottom: 1px solid rgba(124,157,209,0.12);
+    }
+    .adm-sidebar__brand img { height: 36px; }
+    .adm-sidebar__brand-sub {
+      font-family: 'Raleway', sans-serif; font-size: 0.58rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue-lt);
+      margin-top: 0.35rem; opacity: 0.7;
+    }
+    .adm-sidebar__section-label {
+      font-family: 'Raleway', sans-serif; font-size: 0.55rem; font-weight: 700;
+      letter-spacing: 0.25em; text-transform: uppercase; color: rgba(124,157,209,0.45);
+      padding: 1.5rem 1.5rem 0.5rem;
+    }
+    .adm-nav { list-style: none; margin: 0; padding: 0.25rem 0.75rem; }
+    .adm-nav li { margin: 0.1rem 0; }
+    .adm-nav a {
+      display: flex; align-items: center; gap: 0.7rem;
+      padding: 0.6rem 0.75rem;
+      font-family: 'Raleway', sans-serif; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .adm-nav a:hover { background: rgba(124,157,209,0.1); color: var(--white); }
+    .adm-nav a.active { background: rgba(124,157,209,0.15); color: var(--white); }
+    .adm-nav a svg { opacity: 0.7; flex-shrink: 0; }
+    .adm-nav a:hover svg, .adm-nav a.active svg { opacity: 1; }
+    .adm-sidebar__spacer { flex: 1; }
+    .adm-sidebar__user {
+      padding: 1.25rem 1.5rem;
+      border-top: 1px solid rgba(124,157,209,0.12);
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .adm-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--blue-mid); overflow: hidden;
+      flex-shrink: 0; position: relative;
+    }
+    .adm-avatar__img { width: 100%; height: 100%; object-fit: cover; }
+    .adm-avatar__initials {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Raleway', sans-serif; font-size: 0.7rem; font-weight: 700;
+      color: var(--white); letter-spacing: 0.05em;
+    }
+    .adm-sidebar__user-info { flex: 1; overflow: hidden; }
+    .adm-sidebar__user-name {
+      font-size: 0.8rem; font-weight: 600; color: var(--white);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .adm-sidebar__user-role {
+      font-size: 0.68rem; color: rgba(255,255,255,0.4); margin-top: 0.1rem;
+    }
+    .adm-logout {
+      background: none; border: none; cursor: pointer;
+      color: rgba(255,255,255,0.35); padding: 4px;
+      transition: color 0.15s; flex-shrink: 0;
+    }
+    .adm-logout:hover { color: rgba(255,255,255,0.75); }
+
+    /* Main content */
+    .adm-main {
+      padding: 2.5rem 2.5rem 4rem;
+      background: var(--cream);
+      overflow-y: auto;
+    }
+
+    .adm-topbar {
+      display: flex; align-items: flex-start; justify-content: space-between;
+      margin-bottom: 2.5rem; gap: 1rem;
+    }
+    .adm-greeting {
+      font-family: 'Raleway', sans-serif; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--blue-mid); margin-bottom: 0.4rem;
+    }
+    .adm-main h1 {
+      font-size: 2rem; color: var(--charcoal); line-height: 1.1; margin: 0;
+    }
+    .adm-topbar-date {
+      font-size: 0.8rem; color: var(--muted); opacity: 0.7;
+      text-align: right; padding-top: 0.4rem;
+    }
+
+    /* Stat cards */
+    .adm-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem; margin-bottom: 2.5rem;
+    }
+    .adm-stat {
+      background: var(--white);
+      border: 1px solid rgba(54,65,87,0.08);
+      padding: 1.4rem 1.5rem;
+    }
+    .adm-stat__label {
+      font-family: 'Raleway', sans-serif; font-size: 0.6rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--blue-mid); margin-bottom: 0.6rem;
+    }
+    .adm-stat__value {
+      font-family: 'Raleway', sans-serif; font-size: 2rem; font-weight: 800;
+      color: var(--charcoal); line-height: 1;
+    }
+    .adm-stat__sub {
+      font-size: 0.72rem; color: var(--muted); margin-top: 0.3rem;
+    }
+
+    /* Panels */
+    .adm-panels {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    @media (max-width: 900px) {
+      .adm-panels { grid-template-columns: 1fr; }
+    }
+    .adm-panel {
+      background: var(--white);
+      border: 1px solid rgba(54,65,87,0.08);
+    }
+    .adm-panel__header {
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid rgba(54,65,87,0.07);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .adm-panel__title {
+      font-family: 'Raleway', sans-serif; font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue-mid);
+    }
+    .adm-panel__link {
+      font-size: 0.72rem; color: var(--blue-lt);
+      text-decoration: none; font-weight: 500;
+      transition: color 0.15s;
+    }
+    .adm-panel__link:hover { color: var(--charcoal); }
+    .adm-panel__body { padding: 1rem 1.5rem; }
+
+    /* Service plans */
+    .adm-service-group { margin-bottom: 1.25rem; }
+    .adm-service-group:last-child { margin-bottom: 0; }
+    .adm-service-group__name {
+      font-size: 0.78rem; font-weight: 600; color: var(--muted);
+      margin-bottom: 0.4rem; padding-bottom: 0.4rem;
+      border-bottom: 1px solid rgba(54,65,87,0.06);
+    }
+    .adm-plan-row {
+      display: grid; grid-template-columns: 90px 1fr 20px;
+      align-items: center; gap: 0.75rem;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(54,65,87,0.04);
+      text-decoration: none;
+      transition: background 0.1s;
+    }
+    .adm-plan-row:last-child { border-bottom: none; }
+    .adm-plan-row:hover { background: rgba(54,65,87,0.02); margin: 0 -1.5rem; padding-left: 1.5rem; padding-right: 1.5rem; }
+    .adm-plan-row__date {
+      font-size: 0.75rem; color: var(--blue-mid); font-weight: 600;
+      font-family: 'Raleway', sans-serif;
+    }
+    .adm-plan-row__title {
+      font-size: 0.88rem; color: var(--charcoal); font-weight: 500;
+    }
+    .adm-plan-row__arrow { font-size: 0.75rem; color: var(--blue-lt); }
+
+    .adm-empty { font-size: 0.85rem; color: var(--muted); padding: 0.5rem 0; }
+
+    /* Quick links panel */
+    .adm-quick-links { display: flex; flex-direction: column; gap: 0; }
+    .adm-quick-link {
+      display: flex; align-items: center; gap: 1rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(54,65,87,0.06);
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .adm-quick-link:last-child { border-bottom: none; }
+    .adm-quick-link:hover { opacity: 0.75; }
+    .adm-quick-link__icon {
+      width: 34px; height: 34px;
+      background: var(--warm-lt);
+      border-radius: 2px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--blue-mid); flex-shrink: 0;
+    }
+    .adm-quick-link__text {}
+    .adm-quick-link__label {
+      font-size: 0.88rem; font-weight: 600; color: var(--charcoal);
+    }
+    .adm-quick-link__sub { font-size: 0.73rem; color: var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 720px) {
+      .adm-shell { grid-template-columns: 1fr; }
+      .adm-sidebar { position: static; height: auto; flex-direction: row; flex-wrap: wrap; }
+      .adm-sidebar__brand { padding: 1rem 1.25rem; }
+      .adm-sidebar__spacer { display: none; }
+      .adm-nav { display: flex; flex-wrap: wrap; padding: 0.5rem; }
+      .adm-sidebar__section-label { display: none; }
+      .adm-main { padding: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Login Screen ── -->
+<div id="screen-login" class="adm-login">
+  <div class="adm-login__card">
+    <img src="resources/logos/hope_logo_dark.png" alt="Hope Church" class="adm-login__logo"
+         onerror="this.style.display='none'">
+    <div class="adm-login__eyebrow">Hope Church · Madison</div>
+    <h2>Staff Portal</h2>
+    <p>Sign in with your Planning Center account to access the staff dashboard.</p>
+
+    <button id="btn-login" class="adm-login__pco-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+      </svg>
+      Sign in with Planning Center
+    </button>
+
+    <div id="login-error" class="adm-login__error" hidden></div>
+
+    <p class="adm-login__note">
+      Access is limited to authorized Hope Church staff.<br>
+      Contact your administrator if you need access.
+    </p>
+  </div>
+</div>
+
+<!-- ── Loading Screen ── -->
+<div id="screen-loading" class="adm-loading" hidden>
+  <div class="adm-loading__spinner"></div>
+  <div id="loading-msg" class="adm-loading__msg">Loading…</div>
+</div>
+
+<!-- ── Dashboard ── -->
+<div id="screen-dashboard" class="adm-shell" hidden>
+
+  <!-- Sidebar -->
+  <aside class="adm-sidebar">
+    <div class="adm-sidebar__brand">
+      <img src="resources/logos/hope_logo_light.png" alt="Hope Church">
+      <div class="adm-sidebar__brand-sub">Staff Portal</div>
+    </div>
+
+    <div class="adm-sidebar__section-label">Menu</div>
+    <ul class="adm-nav">
+      <li>
+        <a href="#" class="active">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+          </svg>
+          Dashboard
+        </a>
+      </li>
+    </ul>
+
+    <div class="adm-sidebar__section-label">Planning Center</div>
+    <ul class="adm-nav">
+      <li>
+        <a href="https://people.planningcenteronline.com" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          People
+        </a>
+      </li>
+      <li>
+        <a href="https://services.planningcenteronline.com" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          Services
+        </a>
+      </li>
+      <li>
+        <a href="https://giving.planningcenteronline.com" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          Giving
+        </a>
+      </li>
+      <li>
+        <a href="https://groups.planningcenteronline.com" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          Groups
+        </a>
+      </li>
+      <li>
+        <a href="https://checkins.planningcenteronline.com" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+          Check-Ins
+        </a>
+      </li>
+    </ul>
+
+    <div class="adm-sidebar__spacer"></div>
+
+    <div class="adm-sidebar__user">
+      <div class="adm-avatar" id="adm-avatar">
+        <span class="adm-avatar__initials">—</span>
+      </div>
+      <div class="adm-sidebar__user-info">
+        <div class="adm-sidebar__user-name" id="adm-name">Loading…</div>
+        <div class="adm-sidebar__user-role">Staff</div>
+      </div>
+      <button id="btn-logout" class="adm-logout" title="Sign out">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/>
+        </svg>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <main class="adm-main">
+    <div class="adm-topbar">
+      <div>
+        <div class="adm-greeting" id="adm-greeting">Welcome back</div>
+        <h1 id="page-title">Dashboard</h1>
+      </div>
+      <div class="adm-topbar-date" id="adm-date"></div>
+    </div>
+
+    <!-- Stats row -->
+    <div class="adm-stats">
+      <div class="adm-stat">
+        <div class="adm-stat__label">Total People</div>
+        <div class="adm-stat__value" id="stat-people">—</div>
+        <div class="adm-stat__sub">in Planning Center</div>
+      </div>
+      <div class="adm-stat">
+        <div class="adm-stat__label">Total Donations</div>
+        <div class="adm-stat__value" id="stat-donations">—</div>
+        <div class="adm-stat__sub">recorded in PCO Giving</div>
+      </div>
+    </div>
+
+    <!-- Panels -->
+    <div class="adm-panels">
+
+      <!-- Upcoming Services -->
+      <div class="adm-panel">
+        <div class="adm-panel__header">
+          <div class="adm-panel__title">Upcoming Service Plans</div>
+          <a href="https://services.planningcenteronline.com" target="_blank" rel="noopener" class="adm-panel__link">Open PCO →</a>
+        </div>
+        <div class="adm-panel__body" id="adm-services">
+          <p class="adm-empty">Loading plans…</p>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="adm-panel">
+        <div class="adm-panel__header">
+          <div class="adm-panel__title">Quick Links</div>
+        </div>
+        <div class="adm-panel__body">
+          <div class="adm-quick-links">
+            <a href="https://home.planningcenteronline.com" target="_blank" rel="noopener" class="adm-quick-link">
+              <div class="adm-quick-link__icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <div class="adm-quick-link__text">
+                <div class="adm-quick-link__label">PCO Home</div>
+                <div class="adm-quick-link__sub">Planning Center dashboard</div>
+              </div>
+            </a>
+            <a href="https://people.planningcenteronline.com/people/new" target="_blank" rel="noopener" class="adm-quick-link">
+              <div class="adm-quick-link__icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+              <div class="adm-quick-link__text">
+                <div class="adm-quick-link__label">Add Person</div>
+                <div class="adm-quick-link__sub">Create a new PCO profile</div>
+              </div>
+            </a>
+            <a href="https://giving.planningcenteronline.com/donations/new" target="_blank" rel="noopener" class="adm-quick-link">
+              <div class="adm-quick-link__icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <div class="adm-quick-link__text">
+                <div class="adm-quick-link__label">Record Donation</div>
+                <div class="adm-quick-link__sub">Log a manual gift</div>
+              </div>
+            </a>
+            <a href="https://checkins.planningcenteronline.com" target="_blank" rel="noopener" class="adm-quick-link">
+              <div class="adm-quick-link__icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+              </div>
+              <div class="adm-quick-link__text">
+                <div class="adm-quick-link__label">Check-Ins</div>
+                <div class="adm-quick-link__sub">Sunday attendance & kids</div>
+              </div>
+            </a>
+            <a href="index.html" class="adm-quick-link">
+              <div class="adm-quick-link__icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+              </div>
+              <div class="adm-quick-link__text">
+                <div class="adm-quick-link__label">Church Website</div>
+                <div class="adm-quick-link__sub">View the public site</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  // Set today's date in topbar
+  document.getElementById('adm-date').textContent = new Date().toLocaleDateString('en-US', {
+    weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+  });
+</script>
+<script src="admin.js"></script>
+</body>
+</html>

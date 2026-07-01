@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "reason": "Inter is the project's established body font used throughout styles.css and all other pages — not a new AI choice",
+        "createdAt": "2026-06-29T17:06:50.956Z"
+      }
+    ]
+  }
+}
