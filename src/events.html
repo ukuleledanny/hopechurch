@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events · Hope Church Madison</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Filter bar ── */
+    .filter-row {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    .filter-chip {
+      padding: 0.45rem 1.1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: 1px solid rgba(0,0,0,0.14);
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-chip:hover  { border-color: var(--charcoal); color: var(--charcoal); }
+    .filter-chip.active { background: var(--charcoal); border-color: var(--charcoal); color: var(--white); }
+
+    /* ── Event cards ── */
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .event-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .event-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(27,43,75,0.09);
+    }
+    .event-card[data-hidden="true"] { display: none; }
+
+    .event-card__color-bar {
+      height: 4px;
+      width: 100%;
+      flex-shrink: 0;
+    }
+    .bar-navy  { background: var(--blue); }
+    .bar-accent  { background: var(--blue-lt); }
+    .bar-teal  { background: #2a8a74; }
+    .bar-rose  { background: var(--womens-dark); }
+    .bar-slate { background: var(--mens-dark); }
+
+    .event-card__body {
+      padding: 1.75rem 1.75rem 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .event-card__date-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .event-card__cal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+    .event-card__cal-month {
+      font-size: 0.52rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      line-height: 1;
+      padding-top: 5px;
+    }
+    .event-card__cal-day {
+      font-family: 'Raleway', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--charcoal);
+      line-height: 1;
+    }
+    .event-card__time-loc {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .event-card__time {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+    .event-card__loc {
+      font-size: 0.75rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .event-card__category {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      margin-bottom: 0.5rem;
+    }
+    .event-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.65rem;
+      line-height: 1.2;
+    }
+    .event-card p {
+      font-size: 0.9rem;
+      line-height: 1.65;
+      flex: 1;
+    }
+    .event-card__footer {
+      padding: 1rem 1.75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      margin-top: 1rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .event-card__recurring {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* ── Featured event (full width) ── */
+    .event-card--featured {
+      grid-column: 1 / -1;
+      flex-direction: row;
+    }
+    .event-card--featured .event-card__color-bar {
+      width: 4px;
+      height: auto;
+    }
+    .event-card--featured .event-card__body {
+      padding: 2.25rem 2.5rem;
+    }
+    .event-card--featured h3 { font-size: 1.8rem; }
+    .event-card--featured p  { max-width: 620px; }
+    .event-card--featured .event-card__footer {
+      flex-direction: column;
+      align-items: flex-start;
+      border-top: none;
+      border-left: 1px solid rgba(0,0,0,0.05);
+      padding: 2.25rem 2rem;
+      width: 260px;
+      flex-shrink: 0;
+      margin-top: 0;
+      justify-content: center;
+    }
+
+    .no-results {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 2rem;
+      display: none;
+    }
+    .no-results.visible { display: block; }
+
+    @media (max-width: 700px) {
+      .event-card--featured { flex-direction: column; }
+      .event-card--featured .event-card__color-bar { width: 100%; height: 4px; }
+      .event-card--featured .event-card__footer {
+        width: auto; border-left: none;
+        border-top: 1px solid rgba(0,0,0,0.05);
+        flex-direction: row; flex-wrap: wrap;
+      }
+    }
+
+    .events-status {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 2rem;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .event-card__more {
+      font-size: 0.68rem;
+      padding: 0.55rem 1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- ── Page Hero ── -->
+<section class="page-hero">
+  <div style="padding: 0 clamp(1.5rem, 4vw, 4rem); position:relative; z-index:2;">
+    <span class="eyebrow">What's Coming Up</span>
+    <h1>Events</h1>
+    <p>From Sunday mornings to community nights — here's what's happening at Hope.</p>
+  </div>
+</section>
+
+<!-- ── Events ── -->
+<section class="section section--warm">
+  <div style="padding: 0 clamp(1.5rem, 4vw, 4rem);">
+
+    <!-- Cards are filled in from Planning Center by the script below -->
+    <div class="events-grid" id="eventsGrid" aria-live="polite">
+      <div class="events-status" id="eventsStatus">Loading events&hellip;</div>
+    </div>
+
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="shared.js"></script>
+<script>
+  const TZ = 'America/Chicago';
+  const PIN_SVG = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg>';
+  const BARS = ['bar-accent', 'bar-navy'];
+
+  const grid = document.getElementById('eventsGrid');
+  const status = document.getElementById('eventsStatus');
+
+  function el(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  function fmtTime(d) {
+    return d.toLocaleTimeString('en-US', { timeZone: TZ, hour: 'numeric', minute: '2-digit' });
+  }
+
+  function timeRange(ev) {
+    if (ev.all_day) return 'All day';
+    if (!ev.starts_at) return '';
+    const start = new Date(ev.starts_at);
+    if (!ev.ends_at) return fmtTime(start);
+    return fmtTime(start) + ' – ' + fmtTime(new Date(ev.ends_at));
+  }
+
+  function buildCard(ev, index) {
+    const start = new Date(ev.starts_at);
+    const card = el('div', 'event-card');
+    card.appendChild(el('div', 'event-card__color-bar ' + BARS[index % BARS.length]));
+
+    const body = el('div', 'event-card__body');
+    const badge = el('div', 'event-card__date-badge');
+    const cal = el('div', 'event-card__cal');
+    cal.appendChild(el('span', 'event-card__cal-month',
+      start.toLocaleDateString('en-US', { timeZone: TZ, month: 'short' })));
+    cal.appendChild(el('span', 'event-card__cal-day',
+      start.toLocaleDateString('en-US', { timeZone: TZ, day: 'numeric' })));
+    badge.appendChild(cal);
+
+    const meta = el('div', 'event-card__time-loc');
+    meta.appendChild(el('span', 'event-card__time', timeRange(ev)));
+    if (ev.location) {
+      const loc = el('span', 'event-card__loc');
+      loc.innerHTML = PIN_SVG;           // static, trusted icon only
+      loc.appendChild(document.createTextNode(' ' + ev.location));
+      meta.appendChild(loc);
+    }
+    badge.appendChild(meta);
+    body.appendChild(badge);
+
+    body.appendChild(el('h3', '', ev.name));
+    if (ev.summary) {
+      const text = ev.summary.length > 260 ? ev.summary.slice(0, 257).trimEnd() + '…' : ev.summary;
+      body.appendChild(el('p', '', text));
+    }
+    card.appendChild(body);
+
+    const footer = el('div', 'event-card__footer');
+    footer.appendChild(el('span', 'event-card__recurring', ev.recurrence || ''));
+    if (ev.url && /^https:\/\//.test(ev.url)) {
+      const a = el('a', 'btn event-card__more', 'Details →');
+      a.href = ev.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      footer.appendChild(a);
+    }
+    card.appendChild(footer);
+    return card;
+  }
+
+  async function loadEvents() {
+    try {
+      const res = await fetch('/api/events');
+      if (!res.ok) throw new Error('bad response');
+      const data = await res.json();
+      const events = (data.events || []).filter(e => e.starts_at);
+      grid.textContent = '';
+      if (!events.length) {
+        grid.appendChild(el('div', 'events-status', 'No upcoming events right now. Check back soon!'));
+        return;
+      }
+      events.forEach((ev, i) => grid.appendChild(buildCard(ev, i)));
+    } catch (err) {
+      grid.textContent = '';
+      grid.appendChild(el('div', 'events-status',
+        "We couldn't load events just now. Please try again in a few minutes."));
+    }
+  }
+
+  loadEvents();
+</script>
+</body>
+</html>

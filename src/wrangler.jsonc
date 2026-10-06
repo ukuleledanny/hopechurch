@@ -1,0 +1,13 @@
+{
+  // IMPORTANT: "name" must match your existing Worker's name in Cloudflare
+  // (Workers & Pages -> click your project -> the name at the top).
+  "name": "hopechurch",
+  "main": "src/worker.js",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    // Only /api/* runs the Worker first; every other URL is served as a plain static file.
+    "run_worker_first": ["/api/*"]
+  }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact · Hope Church Madison</title>
+  <link rel="stylesheet" href="styles.css" />
+  <!-- Planning Center popup support: lets the form open on top of this page.
+       If this snippet differs from the one in your form's Settings tab (Embed), use PCO's version. -->
+  <script defer src="https://js.churchcenter.com/modal/v1"></script>
+  <style>
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+    @media (max-width: 720px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    .contact-grid h2 { margin-bottom: 1rem; }
+    .contact-grid p { color: var(--muted); line-height: 1.75; margin-bottom: 1.75rem; }
+    .contact-details { list-style: none; padding: 0; margin: 0; }
+    .contact-details li { margin-bottom: 1.25rem; font-size: 0.95rem; line-height: 1.6; }
+    .contact-details strong {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue-mid);
+      margin-bottom: 0.25rem;
+    }
+    .contact-details a { color: inherit; }
+    .contact-note { font-size: 0.8rem; margin-top: 1rem; margin-bottom: 0; }
+  </style>
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- ── Page Hero ── -->
+<section class="page-hero">
+  <div style="padding: 0 clamp(1.5rem, 4vw, 4rem); position:relative; z-index:2;">
+    <h1>Contact</h1>
+    <p>Questions, prayer requests, or just want to know what to expect on Sunday? We'd love to hear from you.</p>
+  </div>
+</section>
+
+<!-- ── Contact ── -->
+<section class="section">
+  <div style="padding: 0 clamp(1.5rem, 4vw, 4rem);">
+    <div class="contact-grid">
+
+      <div>
+        <span class="eyebrow">Get in Touch</span>
+        <h2>Send Us a Message</h2>
+        <div class="divider divider--left"></div>
+        <p>Fill out a short form and a member of our team will get back to you. Your message goes straight to our church staff.</p>
+
+        <!-- REPLACE the href below with your Planning Center form link.
+             Keep "?open-in-church-center-modal=true" at the end. -->
+        <a href="https://hopeinmadison.churchcenter.com/people/forms/1339014?open-in-church-center-modal=true"
+           target="_blank" rel="noopener" class="btn btn--solid">Contact Us &rarr;</a>
+        <p class="contact-note">The form opens right on this page. On a phone it opens in a new tab.</p>
+      </div>
+
+      <div>
+        <span class="eyebrow">Visit Us</span>
+        <h2>Join Us on Sunday</h2>
+        <div class="divider divider--left"></div>
+        <ul class="contact-details">
+          <li><strong>Service</strong>Sunday Worship · 10:00 a.m.</li>
+          <li><strong>Address</strong>1661 Balch Rd<br>Madison, AL 35757</li>
+          <li><strong>Phone</strong><a href="tel:2568305544">(256) 830-5544</a></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+<script src="shared.js"></script>
+</body>
+</html>
