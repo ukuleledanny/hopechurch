@@ -36,9 +36,10 @@ function toPlainText(html) {
 }
 
 async function getEvents(env, ctx, request) {
-  if (!env.PCO_APP_ID || !env.PCO_SECRET) {
-    return json({ error: 'Events are not configured yet.' }, 500);
-  }
+   const missing = ['PCO_APP_ID', 'PCO_SECRET'].filter((k) => !env[k]);
+   if (missing.length) {
+     return json({ error: 'Events are not configured yet.', missing, seen: Object.keys(env).sort() }, 500);
+   }
 
   const cache = caches.default;
   const cacheKey = new Request(new URL(request.url).origin + '/api/events');
