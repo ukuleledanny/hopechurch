@@ -1,4 +1,10 @@
 // Shared navigation HTML
+const BANNER_HTML = `
+<div class="site-banner" id="siteBanner" role="status">
+  <strong>Pardon our mess!</strong> We&rsquo;re currently updating our website. Information may be inaccurate while the move is in progress.
+</div>
+`;
+
 const NAV_HTML = `
 <nav class="nav" id="nav">
   <a href="index.html" class="nav__logo">
@@ -72,7 +78,15 @@ const FOOTER_HTML = `
 `;
 
 // Inject nav and footer
-document.getElementById('nav-placeholder').innerHTML = NAV_HTML;
+document.getElementById('nav-placeholder').innerHTML = BANNER_HTML + NAV_HTML;
+
+// Offset the fixed nav and page content by the banner's height
+function sizeBanner() {
+  const b = document.getElementById('siteBanner');
+  document.documentElement.style.setProperty('--banner-h', (b ? b.offsetHeight : 0) + 'px');
+}
+sizeBanner();
+window.addEventListener('resize', sizeBanner);
 document.getElementById('footer-placeholder').innerHTML = FOOTER_HTML;
 
 // Highlight active nav link

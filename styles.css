@@ -107,9 +107,22 @@ p { font-size: 1rem; color: var(--text-body); text-wrap: pretty; }
 .btn--white { border-color: var(--white); color: var(--white); }
 .btn--white:hover { background: var(--white); color: var(--navy); }
 
+/* ── Site banner ── */
+:root { --banner-h: 0px; }
+body { padding-top: var(--banner-h); }
+.site-banner {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 101;
+  padding: 0.5rem 1rem;
+  background: var(--surface-lt);
+  color: var(--navy);
+  border-bottom: 1px solid rgba(124, 157, 209, 0.35);
+  font-size: 0.82rem; line-height: 1.4; text-align: center;
+}
+.site-banner strong { color: var(--terracotta-dk); }
+
 /* ── Nav ── */
 .nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  position: fixed; top: var(--banner-h); left: 0; right: 0; z-index: 100;
   padding: 0 2rem;
   display: flex; align-items: center; justify-content: space-between;
   height: 72px;
