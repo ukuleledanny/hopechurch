@@ -13,11 +13,10 @@ const NAV_HTML = `
         <li><a href="about.html">About Hope</a></li>
         <li><a href="beliefs.html">What We Believe</a></li>
         <li><a href="staff.html">Our Staff</a></li>
-        <li><a href="events.html">News &amp; Events</a></li>
       </ul>
     </li>
     <li><a href="sermons.html">Sermons</a></li>
-    <li><a href="ministries.html">Ministries</a></li>
+    <li><a href="https://www.hopeinmadison.org/events">Events</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="admin.html" class="nav__staff-login">Staff Login</a></li>
   </ul>
@@ -44,8 +43,7 @@ const FOOTER_HTML = `
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="sermons.html">Sermons</a></li>
-          <li><a href="events.html">Events</a></li>
-          <li><a href="ministries.html">Ministries</a></li>
+          <li><a href="https://www.hopeinmadison.org/events">Events</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
@@ -79,7 +77,7 @@ document.getElementById('footer-placeholder').innerHTML = FOOTER_HTML;
 
 // Highlight active nav link
 const page = window.location.pathname.split('/').pop() || 'index.html';
-const aboutPages = ['about.html', 'beliefs.html', 'staff.html', 'events.html'];
+const aboutPages = ['about.html', 'beliefs.html', 'staff.html'];
 document.querySelectorAll('.nav__links a').forEach(link => {
   if (link.getAttribute('href') === page) link.classList.add('active');
 });
