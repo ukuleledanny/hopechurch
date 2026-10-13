@@ -5,8 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Give · Hope Church Madison</title>
   <link rel="stylesheet" href="styles.css" />
-  <!-- Planning Center Giving: paste the Church Center modal/embed script from
-       Giving > Settings > Embed here when it's ready. -->
+  <!-- Planning Center popup support: lets the giving form open on top of this page.
+       Requires the site to be served over https. -->
+  <script defer src="https://js.churchcenter.com/modal/v1"></script>
+  <style>
+    .give { max-width: 620px; margin: 0 auto; text-align: center; }
+    .give h2 { margin-bottom: 0; }
+    .give p { margin-bottom: 2rem; line-height: 1.75; }
+    .give-note { font-size: 0.8rem; margin: 1rem 0 0; }
+  </style>
 </head>
 <body>
 
@@ -16,15 +23,23 @@
 <section class="page-hero">
   <div class="container">
     <h1>Give</h1>
+    <p>Your generosity supports the ministry of Hope Church in Madison and beyond.</p>
   </div>
 </section>
 
 <!-- ── Giving ── -->
 <section class="section">
   <div class="container">
-    <!-- Replace this block with the Planning Center Giving button/embed. -->
-    <div class="coming-soon">
-      <h2>Coming Soon!</h2>
+    <div class="give">
+      <h2>Give Online</h2>
+      <div class="divider"></div>
+      <p>Give securely through Church Center, one time or on a recurring schedule.</p>
+
+      <!-- Opens Planning Center Giving in a popup on this page.
+           Keep "?open-in-church-center-modal=true" at the end of the link. -->
+      <a href="https://hopeinmadison.churchcenter.com/giving?open-in-church-center-modal=true"
+         target="_blank" rel="noopener" class="btn btn--solid">Give Now &rarr;</a>
+      <p class="give-note">The giving form opens right on this page. On a phone it opens in a new tab.</p>
     </div>
   </div>
 </section>
