@@ -267,7 +267,6 @@
       ['Date', start.toLocaleDateString('en-US', { timeZone: TZ, weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })],
       ['Time', timeRange(ev)],
       ['Where', ev.location],
-      ['Repeats', ev.recurrence],
     ];
     for (const [label, value] of rows) {
       if (!value) continue;
