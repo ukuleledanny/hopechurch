@@ -25,28 +25,12 @@
       overflow: hidden;
       border-radius: var(--r-card);
     }
-    .sermon-thumb img {
+    .sermon-thumb iframe {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
-    }
-    .sermon-thumb__play {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0,0,0,0.35);
-      transition: background 0.2s;
-    }
-    .sermon-thumb:hover .sermon-thumb__play { background: rgba(0,0,0,0.5); }
-    .sermon-thumb__play svg {
-      width: 64px;
-      height: 64px;
-      color: var(--white);
-      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+      border: 0;
     }
 
     .sermon-featured__text .eyebrow { margin-bottom: 0.75rem; }
@@ -79,15 +63,14 @@
   <div class="container">
 
     <div class="sermon-featured">
-      <a href="https://www.youtube.com/playlist?list=PLni19cx_WfWhGKJMSfTyvW2BAp3KoRIpG" target="_blank" rel="noopener" class="sermon-thumb">
-        <div class="sermon-thumb__play">
-          <!-- YouTube play icon -->
-          <svg viewBox="0 0 68 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M66.52 7.74C65.7 4.77 63.4 2.44 60.46 1.62 55.16 0 34 0 34 0S12.84 0 7.54 1.62C4.6 2.44 2.3 4.77 1.48 7.74 0 13.11 0 24 0 24s0 10.89 1.48 16.26C2.3 43.23 4.6 45.56 7.54 46.38 12.84 48 34 48 34 48s21.16 0 26.46-1.62c2.94-.82 5.24-3.15 6.06-6.12C68 34.89 68 24 68 24s0-10.89-1.48-16.26z" fill="#FF0000"/>
-            <path d="M27 34l18-10-18-10v20z" fill="white"/>
-          </svg>
-        </div>
-      </a>
+      <div class="sermon-thumb">
+        <iframe
+          src="https://www.youtube-nocookie.com/embed/videoseries?list=PLni19cx_WfWhGKJMSfTyvW2BAp3KoRIpG"
+          title="Hope Church sermons"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+          allowfullscreen></iframe>
+      </div>
 
       <div class="sermon-featured__text">
         <span class="eyebrow">Most Recent Sermon</span>
