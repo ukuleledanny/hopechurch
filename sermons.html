@@ -21,9 +21,9 @@
       position: relative;
       width: 100%;
       padding-top: 56.25%;
-      background: var(--charcoal);
+      background: var(--navy);
       overflow: hidden;
-      border-radius: 2px;
+      border-radius: var(--r-card);
     }
     .sermon-thumb img {
       position: absolute;
@@ -51,7 +51,7 @@
 
     .sermon-featured__text .eyebrow { margin-bottom: 0.75rem; }
     .sermon-featured__text h2 { margin-bottom: 1rem; }
-    .sermon-featured__text p { color: var(--muted); margin-bottom: 2rem; line-height: 1.75; }
+    .sermon-featured__text p { color: var(--text-body); margin-bottom: 2rem; line-height: 1.75; }
 
     .sermon-archive {
       padding-top: 3rem;
@@ -59,7 +59,7 @@
       text-align: center;
     }
     .sermon-archive h3 { margin-bottom: 0.75rem; }
-    .sermon-archive p { color: var(--muted); font-size: 0.95rem; max-width: 480px; margin: 0 auto 2rem; }
+    .sermon-archive p { color: var(--text-body); font-size: 0.95rem; max-width: 480px; margin: 0 auto 2rem; }
   </style>
 </head>
 <body>
@@ -68,7 +68,7 @@
 
 <!-- ── Page Hero ── -->
 <section class="page-hero">
-  <div style="padding: 0 clamp(1.5rem, 4vw, 4rem); position:relative; z-index:2;">
+  <div class="container">
     <h1>Sermons</h1>
     <p>Expository preaching through the Bible — relevant, faithful, and rooted in the love of God.</p>
   </div>
@@ -76,7 +76,7 @@
 
 <!-- ── Featured Sermon ── -->
 <section class="section">
-  <div style="padding: 0 clamp(1.5rem, 4vw, 4rem);">
+  <div class="container">
 
     <div class="sermon-featured">
       <a href="https://www.youtube.com/playlist?list=PLni19cx_WfWhGKJMSfTyvW2BAp3KoRIpG" target="_blank" rel="noopener" class="sermon-thumb">

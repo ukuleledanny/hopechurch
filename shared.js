@@ -22,9 +22,9 @@ const NAV_HTML = `
       </ul>
     </li>
     <li><a href="sermons.html">Sermons</a></li>
-    <li><a href="https://www.hopeinmadison.org/events">Events</a></li>
+    <li><a href="events.html">Events</a></li>
     <li><a href="contact.html">Contact</a></li>
-    <li><a href="admin.html" class="nav__staff-login">Staff Login</a></li>
+    <li><a href="giving.html">Give</a></li>
   </ul>
   <div class="nav__toggle" id="navToggle" onclick="document.getElementById('nav').classList.toggle('open')">
     <span></span><span></span><span></span>
@@ -49,8 +49,9 @@ const FOOTER_HTML = `
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About Us</a></li>
           <li><a href="sermons.html">Sermons</a></li>
-          <li><a href="https://www.hopeinmadison.org/events">Events</a></li>
+          <li><a href="events.html">Events</a></li>
           <li><a href="contact.html">Contact</a></li>
+          <li><a href="giving.html">Give</a></li>
         </ul>
       </div>
       <div class="footer__col">

@@ -32,7 +32,7 @@
 
   /* Layout */
   --section-pad: 4rem 0;
-  --max-w: 1140px;
+  --max-w: 1200px;
 
   /* Radius */
   --r-tag:    4px;
@@ -51,6 +51,7 @@ body {
   line-height: 1.7;
 }
 img { display: block; max-width: 100%; }
+[hidden] { display: none !important; }
 a { text-decoration: none; color: inherit; }
 
 h1, h2, h3, h4 {
@@ -173,18 +174,6 @@ body { padding-top: var(--banner-h); }
   transition: background 0.2s, color 0.2s; border-radius: var(--r-btn);
 }
 .nav__cta:hover { background: var(--periwinkle); color: var(--white); }
-.nav__staff-login {
-  font-family: 'Work Sans', sans-serif;
-  font-size: 0.85rem; font-weight: 500;
-  padding: 0.35rem 0.85rem;
-  background: #2d7a47;
-  color: #ffffff !important;
-  border-radius: var(--r-btn);
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-.nav__staff-login:hover { background: #235f38 !important; }
-.nav__staff-login::after { display: none !important; }
 .nav__toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
 .nav__toggle span { display: block; width: 24px; height: 1.5px; background: var(--white); transition: transform 0.3s, opacity 0.3s; }
 
@@ -359,16 +348,31 @@ body { padding-top: var(--banner-h); }
 
 /* ── Page Hero ── */
 .page-hero {
-  background: var(--navy); padding: 7rem 0 3.5rem;
-  padding-top: calc(72px + 2.5rem);
+  background: var(--navy);
+  padding: calc(72px + 3rem) 0 3.5rem;
   position: relative; overflow: hidden;
 }
 .page-hero::before {
   content: ''; position: absolute; inset: 0;
   background: radial-gradient(ellipse at 80% 50%, rgba(124,157,209,0.1) 0%, transparent 60%);
 }
+.page-hero .container { position: relative; z-index: 2; }
 .page-hero h1 { color: var(--white); }
 .page-hero p { color: rgba(255,255,255,0.6); max-width: 550px; margin-top: 1rem; }
+
+/* ── Section header (eyebrow + h2 + divider + intro) ── */
+.section-head { margin-bottom: 3rem; }
+.section-head h2 { margin-bottom: 0; }
+.section-head p { max-width: 620px; }
+.section-head--center { text-align: center; }
+.section-head--center .divider { margin-left: auto; margin-right: auto; }
+.section-head--center p { margin: 0 auto; }
+
+/* ── CTA block ── */
+.cta p { max-width: 460px; margin: 0 auto 2rem; }
+
+/* ── Coming soon placeholder ── */
+.coming-soon { text-align: center; padding: 6rem 0; }
 
 /* ── Welcome Strip ── */
 .welcome-strip {
